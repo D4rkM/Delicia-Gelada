@@ -1,4 +1,4 @@
-/*--DESKTOP--*/
+--DESKTOP--
 
 
 /*CONFIG*/
@@ -15,11 +15,13 @@ a{
 ul{
   list-style-type: none;
   text-align: left;
+  margin: 0px;
+  padding: 0px;
 }
 
 /*MENU SUPERIOR*/
 
-#campo_menu_superior{
+#campo_vazio_menu_superior{
   width: 100%;
   height: 100px;
 }
@@ -29,36 +31,47 @@ ul{
   height: 100px;
   float: left;
   position: fixed;
-  background-color: grey
+  background-color: #8177c6;
+  z-index: 3;
 }
 
 #campo_items_menu{
   display: flex;
   flex-direction: row;
-  width:1300px;
+  align-items: center;
+  width:1390px;
   height: 100px;
+  padding-left: 5px;
+  padding-right: 5px;
   margin-left: auto;
   margin-right: auto;
-  background-color: blue;
-
 }
 
 #logo{
+  display: flex;
+  align-items: center;
+  background-image: url();
   width: 150px;
-  height: auto;
-  background-color: green;
+  height: 100px;
+  /*background-color: green;*/
 }
 
 #caixa_menu_superior{
-  background-color: grey;
-  width: 600px;
+  display: flex;
+  align-items: center;
+  /*background-color: purple;*/
+  width:680px;
+  padding-left:20px;
   height: 100px;
+  margin-top: 0px;
+
 }
 
 .opcoes{
   display: flex;
   flex-direction: row;
-  background-color: yellow;
+  align-items: center;
+  /*background-color: yellow;*/
   float: left;
   margin-left: 5px;
   margin-top: 10px;
@@ -66,12 +79,22 @@ ul{
 
 /*Autenticação*/
 
+#autenticacao{
+  display: flex;
+  align-items: center;
+  padding-left:50px;
+  width: 490px;
+  height: 100px;
+}
+
 input{
   border-radius: 50px;
 }
 
+
 .login{
   float: left;
+  margin-left: 5px;
 }
 
 
@@ -80,11 +103,66 @@ input{
 
 header{
   margin: auto;
-  background-image: url();
-  background-color: #417058;
+  overflow: hidden;
   width: 1200px;
   height: 350px;
-  height: 35vh;
+  position:relative;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.slide{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 1200px;
+  height: 350px;
+  position: relative;
+  z-index: 1;
+}
+
+.nav{
+  display: flex;
+  align-items: flex-end;
+  text-align: center;
+  /*background-color: purple;*/
+  opacity: 0.5;
+  color:white;
+  float: left;
+  position: absolute;
+  margin-left: 100px;
+  width: 1012px;
+  height: 350px;
+  z-index: 2;
+}
+
+.previus{
+  display: flex;
+  align-items: center;
+  text-align: center;
+  width: 100px;
+  height: 350px;
+  background-color: black;
+  color: white;
+  opacity: 0.5;
+  float: left;
+  z-index: 2;
+  position: absolute;
+}
+
+.next{
+  display: flex;
+  align-items: center;
+  text-align: center;
+  width: 100px;
+  height: 350px;
+  background-color: black;
+  color: white;
+  opacity: 0.5;
+  float: left;
+  z-index: 2;
+  margin-left: 50px;
 }
 
 /* Home */
@@ -94,39 +172,47 @@ section{
   flex-direction: row;
   margin:auto;
   width: 1200px;
-  height: 1000px;
-  height: 100vh;
-  background-color: #704154;
+  min-height: 1000px;
+  height: auto;
+  /*background-color: #704154;*/
 }
+
+/* Menu Lateral */
 
 #menu_lateral{
   display: flex;
   flex-direction: column;
   background-color: #04602c;
   float: left;
-  height: 100%;
-  width: 20%;
+  height: 1000px;
+  width: 250px;
+}
+
+.categorias{
+  list-style-type: disc;
+
 }
 
 #conteudo{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   background-color: #8e6d29;
-  height: 97.1%;
-  width: 79%;
+  min-height: 1000px;
+  height: auto;
+  width: 1150px;
   padding-left:1%;
-  padding-top: 2.2%;
-
+  padding-top: 0px;
+  overflow: hidden;
 }
 
-#faixa_produto{
+.faixa_produto{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  float: left;
   margin-bottom: 5px;
-  width: 100%;
+  width: 1000px;
   height: 350px;
-  background-color: aquamarine;
-  overflow: hidden;
+  /*background-color: aquamarine;*/
 }
 
 .produto{
@@ -140,36 +226,286 @@ section{
   float: left;
 }
 
+.detalhes{
+  text-align: right;
+  background-color: #ffffff;
+}
+
 /*REDES SOCIAIS*/
 
 #redes_sociais{
   display: flex;
   flex-direction: column;
   float: left;
-  width: 80px;
+  width: 100px;
   height: 300px;
   background-color: #644170;
-  margin-left: 1200px;
-  margin-top: 350px;
+  margin-left: 1210px;
+  margin-top: 200px;
   position: fixed;
 }
 
 .redes{
   display: flex;
   flex-direction: column;
-
+  width: 100px;
+  height: 100px;
+  color: white;
+  background-color: blue;
 }
 
 /*--RODAPÉ--*/
 
 footer{
   height: 200px;
-  height: 20vh;
   background-color: black;
 }
+/*
+@@media screen and (width: 1200px) {
 
+  body{
+    margin: auto;
+  }
+
+  a{
+    text-decoration: none;
+    color:inherit;
+  }
+
+  ul{
+    list-style-type: none;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  /*MENU SUPERIOR
+
+  #campo_vazio_menu_superior{
+    width: 100%;
+    height: 100px;
+  }
+
+  #menu_superior{
+    width: 800px;
+    height: 100px;
+    float: left;
+    position: fixed;
+    background-color: grey;
+  }
+
+  #campo_items_menu{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width:1390px;
+    height: 100px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #logo{
+    display: flex;
+    align-items: center;
+    background-image: url();
+    width: 150px;
+    height: 100px;
+    background-color: green;
+  }
+
+  #caixa_menu_superior{
+    display: flex;
+    align-items: center;
+    background-color: purple;
+    width:680px;
+    padding-left:20px;
+    height: 100px;
+    margin-top: 0px;
+
+  }
+
+  .opcoes{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: yellow;
+    float: left;
+    margin-left: 5px;
+    margin-top: 10px;
+  }
+
+  /*Autenticação
+
+  #autenticacao{
+    display: flex;
+    align-items: center;
+    padding-left:50px;
+    width: 490px;
+    height: 100px;
+  }
+
+  input{
+    border-radius: 50px;
+  }
+
+
+  .login{
+    float: left;
+    margin-left: 5px;
+  }
+
+
+
+  /*CABEÇALHO ( SLIDER )
+
+  header{
+    margin: auto;
+    background-image: url();
+    background-color: #417058;
+    width: 800px;
+    height: 350px;
+  }
+
+  /* Home
+
+  section{
+    display: flex;
+    flex-direction: row;
+    margin:auto;
+    width: 1200px;
+    min-height: 1000px;
+    height: auto;
+    /*background-color: #704154;
+  }
+
+  /* Menu Lateral
+
+  #menu_lateral{
+    display: flex;
+    flex-direction: column;
+    background-color: #04602c;
+    float: left;
+    height: 1000px;
+    width: 250px;
+  }
+
+  .categorias{
+    list-style-type: disc;
+
+  }
+
+  #conteudo{
+    display: flex;
+    flex-direction: column;
+    background-color: #8e6d29;
+    min-height: 1000px;
+    height: auto;
+    width: 1150px;
+    padding-left:1%;
+    padding-top: 0px;
+    overflow: hidden;
+  }
+
+  #faixa_produto{
+    display: flex;
+    flex-direction: row;
+    float: left;
+    margin-bottom: 5px;
+    width: 1000px;
+    height: 350px;
+    background-color: aquamarine;
+  }
+
+  .produto{
+    display: flex;
+    flex-direction: column;
+    background-color: #7a0000;
+    height: 340px;
+    width: 300px;
+    margin-left: 10px;
+    text-align: left;
+    float: left;
+  }
+
+  /*REDES SOCIAIS
+
+  #redes_sociais{
+    display: flex;
+    flex-direction: column;
+    float: left;
+    width: 100px;
+    height: 300px;
+    background-color: #644170;
+    margin-left: 1210px;
+    margin-top: 350px;
+    position: fixed;
+  }
+
+  .redes{
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+    height: 100px;
+    color: white;
+    background-color: black;
+  }
+
+  /*--RODAPÉ--
+
+  footer{
+    height: 200px;
+    background-color: black;
+  }
+
+}
+*/
 /*--SCROLLBAR( APENAS NO CHROME )--*/
 
+::-webkit-scrollbar {
+  background: #610725;
+  background-image: initial;
+  background-position-x: initial;
+  background-position-y: initial;
+  background-size: initial;
+  background-repeat-x: initial;
+  background-repeat-y: initial;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: #274f91;
+  height: 8px;
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  background: #ed145d;
+  background-image: initial;
+  background-position-x: initial;
+  background-position-y: initial;
+  background-size: initial;
+  background-repeat-x: initial;
+  background-repeat-y: initial;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: #4286f4;
+
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
 
 /*--MOBILE--*/
 
