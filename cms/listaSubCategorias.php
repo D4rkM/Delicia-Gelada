@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<?php
+
+  //Serve para ativar no PHP o uso das variáveis de SESSÃO (globais)
+  // session_start();
+  $nome =null;
+  $preco =null;
+  $descricao = null;
+  $categoria = null;
+  $codCategoria = null;
+  $ativo = null;
+  // CONEXÃO COM BANCO DE dados
+  //Estabelece a conexão com o banco
+  $conexao = mysqli_connect("localhost","root","bcd127", "db_delicia_gelada");
+
+  include('include/login.php');
+  //Declarando constantes --
+  define('Campos_obg','Preencha todos os campos obrigatórios!.(*)');
+
+  if(isset($_GET['modo'])){
+    //pega conteudo da variavel modo
+    $modo=$_GET['modo'];
+    //verifica se a variavel modo é igual 'excluir'
+    if ($modo=='excluir') {
+      //Chama verificador em javascript
+
+      //if($verificador != 1){
+        //resgata o codigo passado na url
+        $codigo=$_GET['codigo'];
+        //Deleta no BD o registro
+        $sql = "DELETE FROM tbl_subCategoria WHERE codigo =".$codigo;
+        mysqli_query($conexao, $sql);
+        //Redireciona para a pagina inicial para apagar o GET da variavel
+        //header('location:faleConosco.php');
+    //  }
+
+    }elseif ($modo == 'visualizar') {
+
+      //Variavel botao recebe editar
+      $botao = "visualizar";
+
+      $codigo=$_GET['codigo'];
+
+      //Cria a variavel de sessão para o codigo de registro que será atualizado no UPDATE
+      $_SESSION['cod_item'] = $codigo;
+
+      $sql = "SELECT * FROM tbl_subCategoria WHERE codigo = ".$codigo;
+
+      $select = mysqli_query($conexao, $sql);
+
+      //Consulta para ver se o usuario está no banco
+      if($rsConsulta = mysqli_fetch_array($select)){
+
+        //REsgatando dados do banco e guardando em variaveis locais
+        $codigo = $rs['codigo'];
+        $nome = $rs['nome'];
+        $codCategoria = $rs['codCategoria'];
+        $ativo = $rs['ativo'];
+
+      }
+
+      //Alterando página ativa quando clicado no radio
+    }else if($modo == "ativar"){
+
+      $codigo = $_GET['codigo'];
+
+      $ativo = $_GET['ativo'];
+
+        if($ativo){
+          $sql = "UPDATE tbl_subCategoria
+                  SET ativo = 0
+                  WHERE codigo =".$codigo;
+        }else{
+          $sql = "UPDATE tbl_subCategoria
+                  SET ativo = 1
+                  WHERE codigo =".$codigo;
+        }
+
+        if(mysqli_query($conexao, $sql)){
+          echo("<script>alert('Atualizado com sucesso!');</script>");
+        }else{
+          echo("<script>alert('Não foi possível atualizar a página!');");
+        }
+
+
+    }
+  }
+
+?>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="css/cms.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>CMS - Lista de Sub-Categorias</title>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script>
+    $(document).ready(function() {
+
+      $(".ver").click(function() {
+        $(".modalContainer").slideToggle(2000);
+    	//slideToggle
+    	//toggle
+    	//FadeIn
+      });
+    });
+      //Função para executar o Modal
+    	function Modal(idIten){
+    		$.ajax({
+    			type: "POST",
+    			url: "modalSubCategoria.php",
+    			data: {id:idIten},
+    			success: function(dados){
+    				$('.modal').html(dados);
+    			}
+    		});
+    	}
+    </script>
+  </head>
+  <body>
+    <!-- JANELA MODAL -->
+    <div class="modalContainer">
+      <div class="modal" >
+
+      </div>
+    </div>
+    <div class="main">
+
+      <?php include('include/cabecalho.php'); ?>
+      <?php include('include/menu.php'); ?>
+      <div class="subMenu">
+        <a href="cadSubCategoria.php">
+          <img src="#" alt="Adicionar">
+        </a>
+      </div>
+
+      <div class="conteudoFaleConosco">
+        <div class="faixaHorizontal">
+          <div class="info">
+            Nome da Sub-Categoria
+          </div>
+          <div class="info">
+            Categoria
+          </div>
+          <div class="info">
+            Ativar/desativar
+          </div>
+          <div class="info">
+            ver/excluir
+          </div>
+        </div>
+        <form class="frmAtivarSubCategoria" action="listaSubCategorias.php" method="post">
+        <?php
+            $sql = "SELECT sc.*, c.categoria FROM tbl_subCategoria AS sc
+                    INNER JOIN tbl_categoria AS c
+                    ON sc.codCategoria = c.codigo
+                    ORDER BY c.categoria;";
+                    // echo($sql);
+            $select = mysqli_query($conexao, $sql);
+
+            while ($rs = mysqli_fetch_array($select)) {
+              $at = "";
+              //Identificando página ativa
+              if($rs['ativo']){
+                $at = "ON";
+              }else{
+                $at = "OFF";
+              }
+
+              ?>
+            <div class="faixaHorizontal">
+              <!-- &nbsp; - tag de espaço do HTML -->
+
+                <div class="valores2">
+                  <p><?php echo($rs['nome']); ?></p>
+                </div>
+                <div class="valores2">
+                  <p><?php echo($rs['categoria']); ?></p>
+                </div>
+                <div class="valores2">
+                  <a href="listaSubCategorias.php?modo=ativar&ativo=<?php echo($rs['ativo']); ?>&codigo=<?php echo($rs['codigo']); ?>" >
+                    <?php echo($at); ?>
+                  </a>
+                </div>
+
+
+              <div class="valores2">
+                <a class="ver" href="#" onclick="Modal(<?php echo($rs["codigo"]);?>)">
+
+                  <img src="icones/Modify16.png" alt="Ver">
+
+                </a>
+
+                <a onclick="return confirm('Deseja realmente excluir esta página?');"
+                 href="listaSubCategorias.php?modo=excluir&codigo=<?php echo($rs['codigo']); ?>" > |
+                  <img src="icones/Delete16.png" alt="Excluir">
+                </a>
+              </div>
+            </div>
+        <?php } ?>
+        </form>
+      </div>
+      <?php include('include/rodape.php'); ?>
+    </div>
+  </body>
+</html>

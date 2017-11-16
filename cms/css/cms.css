@@ -1,0 +1,193 @@
+/* DESKTOP */
+
+@font-face {
+  font-family: 'Baloo Tammudu';
+  src: url('../../fonts/Baloo_Tammudu/BalooTammudu-Regular.ttf');
+}
+
+body{
+  font-family: 'Baloo Tammudu', cursive;
+}
+
+body a{
+  margin: 0px;
+  text-decoration: none;
+  color:black;
+}
+
+.main{
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  border: solid 1px #000;
+  width: 1200px;
+  min-height: 850px;
+  height: auto;
+  box-shadow: 1px 1px 2px 2px #597513;
+  border-radius: 50px;
+}
+
+header{
+  display: flex;
+  flex-direction: row;
+  /*background-color: #7eaa14;*/
+  background-color: #000;
+  width: 1200px;
+  height: 180px;
+  border-radius: 50px 50px 0px 0px;
+}
+
+.titulo{
+  width:800px;
+  height: 180px;
+  color:#fff;
+  text-align: center;
+  /*border-right: solid;*/
+
+}
+
+.logo{
+  display: flex;
+  align-items: center;
+  width:400px;
+  height: 180px;
+}
+
+nav{
+  display: flex;
+  flex-direction: row;
+  width: 1180px;
+  padding-left: 20px;
+  height: 130px;
+  border-bottom: solid 1px green;
+  /*background-color: grey;*/
+  /*border-top: solid;*/
+  /*border-bottom: solid;*/
+}
+
+.menu{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 200px;
+  height: 130px;
+  margin-right: 20px;
+  /*border: solid;*/
+  /*background-color: grey;*/
+}
+
+.menu img{
+  width: 80px;
+  height: 80px;
+}
+
+.subMenu{
+  width: 1200px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  border-bottom: solid 1px green;
+}
+
+.logout{
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: 150px;
+}
+
+.conteudo{
+  display: flex;
+  flex-direction: row;
+  width: 1200px;
+  min-height: 500px;
+  height: auto;
+  overflow: hidden;
+  /*margin-bottom: solid 1px black;*/
+}
+
+.conteudoFaleConosco{
+  display: flex;
+  flex-direction: column;
+  width: 1200px;
+  min-height: 500px;
+  height: auto;
+  overflow: hidden;
+  /*margin-bottom: solid 1px black;*/
+}
+
+#cadItem{
+  display: flex;
+  align-items:center;
+}
+
+.faixaVertical{
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+}
+
+.opcoes{
+  display: flex;
+  align-items: center;
+  width: 300px;
+  height: 125px;
+  background-color: ;
+  border-radius: 50px 50px 50px 50px;
+  transition: 2s;
+}
+
+/*.opcoes:hover{
+  background-color:  #7eaa14;
+  transition: 2s;
+}*/
+.valores2{
+  display: flex;
+  border:  1px solid;
+  width: 200px ;
+  /*background-color: grey;*/
+  float:left;
+}
+
+.faixaHorizontal{
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  width: 1200px;
+  height: 75px;
+  /*background-color: blue;*/
+}
+
+.info{
+  /*background-color: grey;*/
+  width: 190px;
+  padding: 5px;
+  width: 600;
+  height: 100px;
+}
+
+.alt{
+  margin: auto;
+  border:solid;
+  background-color: grey;
+  padding: 5px;
+  width: auto;
+  height: 50px;
+}
+
+.opcoes img{
+  width: 100px;
+  height: 100px;
+}
+
+footer{
+  color:#fff;
+  width: 1200px;
+  height: 35px;
+  padding-top: 15px;
+  /*opacity: 0.5;*/
+  /*background-color: #7eaa14;*/
+  background-color: black;
+  text-align: center;
+  border-radius: 0px 0px 50px 50px;
+}

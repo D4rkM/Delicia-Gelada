@@ -1,0 +1,291 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+
+	background-color:#FFFFFF;
+	margin: 0px;
+	/*background-image:url(../imagens/Futebol.jpg);
+	background-repeat:no-repeat;
+	background-position:center;*/
+}
+
+#principal {
+
+	width:980px;
+	height:1500px;
+	background-color:#FFFFFF;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#cabecalho {
+
+	width:100%;
+	height:200px;
+	background-color:#999999;
+	background-image:url(../imagens/cabecalho3.jpg);
+}
+
+#menu {
+
+	width:100%;
+	height:50px;
+	background-color:#EFEFEF;
+
+}
+
+#conteudo {
+
+	width:100%;
+	height:900px;
+	background-color:#FFFFFF;
+
+}
+
+#rodape {
+
+	width:100%;
+	height:50px;
+	background-color:#999999;
+
+}
+
+/*Configuração da tablea do menu*/
+
+#tblmenu {
+
+	width:100%;
+	height:100%;
+	border:solid 2px;
+
+}
+
+#tblmenu td {
+
+	border:solid 1px;
+	background-color:#FFFF00;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:14px;
+	color:#993300;
+	font-weight:bold;
+	text-align:center;
+	width:20%;
+}
+
+
+/**/
+
+/*formatação de link*/
+a {
+
+	text-decoration:none;
+	color:#333333;
+}
+
+a:hover {
+
+	/*color:#CCCCCC;
+	font-size:16px;*/
+}
+
+#tblmenu td:hover {
+
+	background-color:#FFFFCC;
+	font-size:18px;
+
+}
+
+/*
+a:alink {
+
+	text-decoration:none;
+	color:#FFFFFF;
+}
+
+a:vlink {
+	text-decoration:none;
+	color:#FFFFFF;
+}
+*/
+/**/
+
+/*Divs para estrutura o conteudo*/
+
+#conteudo1 {
+
+	width:294px;
+	height:300px;
+	background-color:#CCCCCC;
+	/*position:absolute;*/
+	float:left;
+
+
+}
+#conteudo2 {
+
+	width:670px;
+	height:300px;
+	background-color:#FFFFFF;
+	/*position:absolute;
+	margin-left:294px;*/
+	float:right;
+
+	padding:2px;
+	overflow:auto;
+
+
+}
+
+
+#conteudo3 {
+
+	width:670px;
+	height:300px;
+	background-color:#FFFFFF;
+	/*position:absolute;
+	margin-left:294px;*/
+	float:left;
+
+}
+
+
+.titulo {
+
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:18px;
+	text-align:center;
+	color:#0099FF;
+	font-weight:bold;
+
+}
+
+.texto {
+
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:12px;
+	text-align:justify;
+
+}
+
+
+
+/*formatação para o php*/
+
+#cadastro {
+
+	width:100%;
+	height:300px;
+	background-color:#FFFFFF;
+}
+
+#tblcadastro {
+	width:400px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:10px;
+	border:solid 2px;
+	border-color:#C0C0C0;
+
+}
+
+.tblcadastro_td{
+	width:100px;
+	border:solid 1px;
+	border-color:#CCCCCC;
+	font-family:verdana;
+	font-size:12px;
+	font-weight:bold;
+	height:40px;
+	text-align:right;
+	border-color:#DCDCDC;
+}
+
+
+.tblcadastro_td_campos{
+	width:100px;
+	border:solid 1px;
+	border-color:#CCCCCC;
+	font-family:verdana;
+	font-size:12px;
+	font-weight:bold;
+	height:40px;
+	text-align:left;
+	border-color:#DCDCDC;
+}
+
+#consulta {
+
+	width:100%;
+	height:300px;
+	background-color:#FFFFFF;
+	overflow:auto;
+
+
+}
+
+#tblconsulta {
+
+	width:80%;
+	border: solid 3px;
+	margin-left:auto;
+	margin-right:auto;
+	background-color:#FFFFFF;
+
+}
+
+#tblconsulta td{
+
+	width:20%;
+	border: solid 1px;
+
+}
+
+.titulo_tabela {
+	background-color:#6495ED;
+	font-family:verdana;
+	font-size:16px;
+	text-align:center;
+	height:50px;
+	color:#ffffff;
+
+
+}
+/**/
+
+.caixa:focus{
+	background-color:#FFFFCC;
+}
+.caixa{
+	font-family:verdana;
+	font-size:10px;
+}
+
+
+.modal{
+	display: flex;
+	/*padding-left: 20px;*/
+	width:700px;
+	min-height:500px;
+	height: auto;
+	overflow: hidden;
+	background-color:#ffffff;
+	margin:auto;
+	/*margin-top:250px;*/
+	border-radius: 50px;
+
+}
+
+.modalContainer{
+	width:100%;
+	height:100%;
+	margin:0px;
+	background: rgba(0, 0, 0, 0.7);
+	position:fixed;
+	display:none;
+}
+
+#editarUsuario{
+	display: flex;
+	align-items: center;
+}
