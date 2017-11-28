@@ -3,7 +3,8 @@
 
 	session_start();
 
-  $conexao = mysqli_connect('localhost', 'root', 'bcd127', 'db_delicia_gelada');
+	require_once("include/conexao.php");
+	$conn = conexao();
 
 	if(isset($_POST['btnEditar'])){
 
@@ -13,11 +14,8 @@
 		$descricao = $_POST['txtDescricao'];
 		$codProduto = $_POST['selectProduto'];
     $cod = $_SESSION['codPromo'];
-		if(isset($_POST['ckAtivo'])){
-      $ativo = $_POST['ckAtivar'];
-    }else{
-      $ativo = 0;
-    }
+		$ativado = $_POST['ckAtivar'];
+		$ativado = $ativado == "" ? 0 : $ativado;
 
     if(isset($_POST['ckPromoMes'])){
 
@@ -26,7 +24,7 @@
       $sql = "UPDATE tbl_promocao
   						SET promoMes = 0;";
 
-      mysqli_query($conexao, $sql);
+      mysqli_query($conn, $sql);
 
     }else{
       $sucoMes = 0;
@@ -44,7 +42,7 @@
 
 		// echo($sql);
 
-		if (mysqli_query($conexao, $sql)){
+		if (mysqli_query($conn, $sql)){
 			?><script> alert('Usuário alterado com sucesso!'); </script>"<?php
 				header("location:listaPromo.php");
 		} else {
@@ -75,7 +73,7 @@
 				<?php
   				$sql = "SELECT * FROM tbl_promocao WHERE codigo=".$id;
   				echo($sql);
-  				$select = mysqli_query($conexao, $sql);
+  				$select = mysqli_query($conn, $sql);
 
   				$rs = mysqli_fetch_array($select);
 
@@ -120,7 +118,7 @@
               <select class="produto" name="selectProduto" required>
                 <?php
                   $newSql = "SELECT * from tbl_produto;";
-                  $select = mysqli_query($conexao, $newSql);
+                  $select = mysqli_query($conn, $newSql);
                   while($newRs = mysqli_fetch_array($select)){
                 ?>
                 <option value="<?php echo($newRs['codigo']); ?>"><?php echo($newRs['nome']); ?></option>

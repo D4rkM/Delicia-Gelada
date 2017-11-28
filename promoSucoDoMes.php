@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <?php
 
-  $conexao = mysqli_connect('localhost', 'root', 'bcd127', 'db_delicia_gelada');
+
+  require_once("cms/include/conexao.php");
+  $conn = conexao();
+
 
   $sql = "SELECT promo.*, prod.foto
   FROM tbl_promocao AS promo
@@ -9,7 +12,7 @@
   ON promo.codProduto = prod.codigo
   WHERE promo.promoMes = 1 AND promo.ativo = 1;";
 
-  $select = mysqli_query($conexao, $sql);
+  $select = mysqli_query($conn, $sql);
 
   // if(){
     $rs = mysqli_fetch_array($select);

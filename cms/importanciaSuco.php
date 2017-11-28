@@ -12,7 +12,9 @@
   $nome_arq = null;
 
 
-  $conn = mysqli_connect('localhost','root','bcd127','db_delicia_gelada');
+  require_once("include/conexao.php");
+  $conn = conexao();
+  require_once("include/salvarImagem.php");
 
   if(isset($_POST['btnSalvar'])){
 
@@ -23,45 +25,28 @@
     $txt3 = $_POST['txt3'];
     $txt4 = $_POST['txt4'];
     $txt5 = $_POST['txt5'];
-    $upload_dir = "../img/blog/";
+
     $ativo = 1;
 
     // Pegando nome e extensão da imagem
     $nome_arq = basename($_FILES['fotoImp']['name']);
+    $imagem = salvarImagem($nome_arq);
 
-    //Verificando se a extensão é permitida
-    if(strstr($nome_arq,'.jpg') || strstr($nome_arq,'.png') || strstr($nome_arq,'.gif')){
-      $extensao = substr($nome_arq, strpos($nome_arq,"."), 5);
-      $prefixo = substr($nome_arq, 0, strpos($nome_arq,"."));
-      $nome_arq = md5($prefixo).$extensao;
+    //Atualizando Outros campos para alterar dados da página
+    $sql = "UPDATE tbl_importanciaSuco
+            SET ativo = 0;";
+    mysqli_query($conn, $sql);
 
-      //Guardamos o caminho e o nome da imagem que será inserida no BD.
-      $upload_file = $upload_dir . $nome_arq;
+    $sql="INSERT INTO tbl_importanciaSuco
+    (texto1, texto2, texto3, texto4, subtexto, titulo, subtitulo, imagem, ativo)
+    VALUES('$txt1','$txt2','$txt3','$txt4','$txt5','$titulo','$subtitulo','$imagem','$ativo');";
 
-      if (move_uploaded_file($_FILES['fotoImp']['tmp_name'], $upload_file)){
-        //Atualizando Outros campos para alterar dados da página
-        $sql = "UPDATE tbl_importanciaSuco
-                SET ativo = 0;";
-        mysqli_query($conn, $sql);
+    if(mysqli_query($conn, $sql)){
+      header('location:importanciaSuco.php');
 
-        $sql="INSERT INTO tbl_importanciaSuco
-        (texto1, texto2, texto3, texto4, subtexto, titulo, subtitulo, imagem, ativo)
-        VALUES('$txt1','$txt2','$txt3','$txt4','$txt5','$titulo','$subtitulo','$upload_file','$ativo');";
-
-        if(mysqli_query($conn, $sql)){
-          header('location:importanciaSuco.php');
-
-          echo("Arquivo movido com sucesso");
-        }else{
-          echo("Erro ao tentar enviar dados para o banco\n" .$sql);
-        }
-
-      }else{
-          echo("O arquivo não pode ser movido para o servidor");
-      }
-
+      echo("Arquivo movido com sucesso");
     }else{
-        echo('Extensão Inválida!!!!');
+      echo("Erro ao tentar enviar dados para o banco\n" .$sql);
     }
 
   }

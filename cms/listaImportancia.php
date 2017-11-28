@@ -17,7 +17,8 @@
   $ativo = null;
   // CONEXÃO COM BANCO DE dados
   //Estabelece a conexão com o banco
-  $conexao = mysqli_connect("localhost","root","bcd127", "db_delicia_gelada");
+  require_once("include/conexao.php");
+  $conn = conexao();
 
   include('include/login.php');
   //Declarando constantes --
@@ -35,7 +36,7 @@
         $codigo=$_GET['codigo'];
         //Deleta no BD o registro
         $sql = "DELETE FROM tbl_importanciaSuco WHERE codigo =".$codigo;
-        mysqli_query($conexao, $sql);
+        mysqli_query($conn, $sql);
         //Redireciona para a pagina inicial para apagar o GET da variavel
         //header('location:faleConosco.php');
     //  }
@@ -52,7 +53,7 @@
 
       $sql = "SELECT * FROM tbl_importanciaSuco WHERE codigo = ".$codigo;
 
-      $select = mysqli_query($conexao, $sql);
+      $select = mysqli_query($conn, $sql);
 
       //Consulta para ver se o usuario está no banco
       if($rsConsulta = mysqli_fetch_array($select)){
@@ -78,13 +79,13 @@
 
       $sql = "UPDATE tbl_importanciaSuco
               SET ativo = 0;";
-      mysqli_query($conexao, $sql);
+      mysqli_query($conn, $sql);
 
       $sql = "UPDATE tbl_importanciaSuco
               SET ativo = 1
               WHERE codigo =".$codigo;
 
-      if(mysqli_query($conexao, $sql)){
+      if(mysqli_query($conn, $sql)){
         echo("<script>alert('Atualizado com sucesso!');</script>");
       }else{
         echo("<script>alert('Não foi possível atualizar a página!');");
@@ -160,7 +161,7 @@
         <?php
             $sql = "SELECT * FROM tbl_importanciaSuco ORDER BY codigo;";
 
-            $select = mysqli_query($conexao, $sql);
+            $select = mysqli_query($conn, $sql);
 
             while ($rs = mysqli_fetch_array($select)) {
               $at = "";

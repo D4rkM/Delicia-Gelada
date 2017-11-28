@@ -7,19 +7,22 @@ $nomeProprietario = null;
 $descLocal = null;
 $linkMaps = null;
 
-  $conn = mysqli_connect('localhost','root','bcd127','db_delicia_gelada');
-
+  require_once("include/conexao.php");
+  $conn = conexao();
+  
+  require_once("include/salvarImagem.php");
   if(isset($_POST['btnSalvar'])){
 
     $nomeLocal = $_POST['txtLogradouro'];
     $nomeProprietario = $_POST['txtProprietario'];
     $descLocal = $_POST['txtDesc'];
     $linkMaps = $_POST['linkMaps'];
-
+    $nome_arq = basename($_FILES['bkpImg']['name']);
+    $imgBackup = salvarImagem($nome_arq);
 
     $sql="INSERT INTO tbl_ambiente
-    (nomeLocal, nomeProprietario, descLocal, linkMaps)
-    VALUES('$nomeLocal','$nomeProprietario','$descLocal','$linkMaps');";
+    (nomeLocal, nomeProprietario, descLocal, linkMaps, imgBackupMaps)
+    VALUES('$nomeLocal','$nomeProprietario','$descLocal','$linkMaps', '$imgBackup');";
 
     if(mysqli_query($conn, $sql)){
       header('location:cadAmbiente.php');
@@ -29,30 +32,6 @@ $linkMaps = null;
       echo("Erro ao tentar enviar dados para o banco\n" .$sql);
     }
 
-
-
-  }
-
-  //Verificando se a extensão é permitida
-  function guardarFotos($nome_arq){
-
-    $upload_dir = "../img/BkpMap/";
-
-    if(strstr($nome_arq,'.jpg') || strstr($nome_arq,'.png')){
-
-      $extensao = substr($nome_arq, strpos($nome_arq,"."), 5);
-      $prefixo = substr($nome_arq, 0, strpos($nome_arq,"."));
-      $nome_arq = md5($prefixo).$extensao;
-
-      //Guardamos o caminho e o nome da imagem que será inserida no BD.
-      $upload_file = $upload_dir . $nome_arq;
-
-      //move_uploaded_file($_FILES['$nameFile']['tmp_name'], $upload_file);
-
-      return $upload_file;
-    }else{
-      return "Extensão Inválida";
-    }
   }
 
 ?>
@@ -87,6 +66,9 @@ $linkMaps = null;
             </div>
             <div>
               Link para o google Maps: <input type="url" name="linkMaps" placeholder="Link compartilhado do mapa" maxlength="180" required>
+            </div>
+            <div class="">
+              Imagem de Backup: <input type="file" name="bkpImg">
             </div>
             <div>
               <input type="submit" name="btnSalvar" value="Salvar">

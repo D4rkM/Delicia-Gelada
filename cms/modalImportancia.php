@@ -3,7 +3,10 @@
 
 	session_start();
 
-  $conexao = mysqli_connect('localhost', 'root', 'bcd127', 'db_delicia_gelada');
+	require_once("include/conexao.php");
+	$conn = conexao();
+
+	require_once("include/salvarImagem.php");
 
 	if(isset($_POST['btnEditar'])){
 
@@ -15,6 +18,8 @@
 		$subtexto = $_POST['txt5'];
 		$subtitulo = $_POST['txtSubtitulo'];
 		$cod = $_SESSION['codImp'];
+
+
 		if(isset($_POST['ckPromoMes'])){
 
       $ativo = $_POST['ckAtivar'];
@@ -22,13 +27,12 @@
       $sql = "UPDATE tbl_importanciaSuco
   						SET ativo = 0;";
 
-      mysqli_query($conexao, $sql);
+      mysqli_query($conn, $sql);
 
     }else{
       $ativo = 0;
     }
 
-		$upload_dir = "img/produto/";
     $nome_arq = basename($_FILES['fotoImp']['name']);
 		if($nome_arq == ""){
 			$sql = "UPDATE tbl_importanciaSuco
@@ -44,7 +48,7 @@
 
 			// echo($sql);
 
-			if(mysqli_query($conexao, $sql)){
+			if(mysqli_query($conn, $sql)){
 				echo("<script>alert('Pagina editada com Sucesso');</script>");
 				header("location:listaImportancia.php");
 			}else{
@@ -52,42 +56,34 @@
 				echo("<script>alert('Erro ao editar a página!');</script>");
 
 			}
-		}
-    //Verificando se a extensão é permitida
-    if(strstr($nome_arq,'.jpg') || strstr($nome_arq,'.png') || strstr($nome_arq,'.jpeg')){
-      $extensao = substr($nome_arq, strpos($nome_arq,"."), 5);
-      $prefixo = substr($nome_arq, 0, strpos($nome_arq,"."));
-      $nome_arq = md5($prefixo).$extensao;
+		}else{
+			$imagem = salvarImagem($nome_arq);
 
-      //Guardamos o caminho e o nome da imagem que será inserida no BD.
-      $upload_file = $upload_dir . $nome_arq;
+			$sql = "UPDATE tbl_importanciaSuco
+							SET texto1 = '$texto1',
+							texto2 = '$texto2',
+							texto3 = '$texto3',
+							texto4 = '$texto4',
+							subtexto = '$subtexto',
+							titulo = '$titulo',
+							subtitulo = '$subtitulo',
+							imagem = '$imagem',
+							ativo = '$ativo'
+							WHERE codigo = '$cod';";
 
-      if (move_uploaded_file($_FILES['fotoImp']['tmp_name'], $upload_file)){
+			// echo($sql);
 
-				$sql = "UPDATE tbl_importanciaSuco
-								SET texto1 = '$texto1',
-								texto2 = '$texto2',
-								texto3 = '$texto3',
-								texto4 = '$texto4',
-								subtexto = '$subtexto',
-								titulo = '$titulo',
-								subtitulo = '$subtitulo',
-								imagem = '$upload_file',
-								ativo = '$ativo'
-								WHERE codigo = '$cod';";
-
+			if(mysqli_query($conn, $sql)){
+				echo("<script>alert('Pagina editada com Sucesso');</script>");
+				header("location:listaImportancia.php");
+			}else{
 				// echo($sql);
+				echo("<script>alert('Erro ao editar a página!');</script>");
 
-        if(mysqli_query($conexao, $sql)){
-          echo("<script>alert('Pagina editada com Sucesso');</script>");
-					header("location:listaImportancia.php");
-        }else{
-          // echo($sql);
-          echo("<script>alert('Erro ao editar a página!');</script>");
+			}
 
-        }
-      }
 		}
+
 	}
 ?>
 <html>
@@ -112,7 +108,7 @@
 				<?php
   				$sql = "SELECT * FROM tbl_importanciaSuco WHERE codigo =".$id;
 					// echo($sql);
-  				$select = mysqli_query($conexao, $sql);
+  				$select = mysqli_query($conn, $sql);
 
   				$rs = mysqli_fetch_array($select);
 

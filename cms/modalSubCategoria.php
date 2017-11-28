@@ -3,16 +3,14 @@
 
 	session_start();
 
-  $conexao = mysqli_connect('localhost', 'root', 'bcd127', 'db_delicia_gelada');
+	require_once("include/conexao.php");
+	$conn = conexao();
 
 	if(isset($_POST['btnEditar'])){
 
 		$nome = $_POST['txtSubCategoria'];
-		if(isset($_POST['ckAtivo'])){
-      $ativo = $_POST['ckAtivo'];
-    }else{
-      $ativo = 0;
-    }
+		$ativado = $_POST['ckAtivo'];
+		$ativado = $ativado == "" ? 0 : $ativado;
 
 		$sql = "UPDATE tbl_subCategoria
 						SET nome = '$nome',
@@ -21,7 +19,7 @@
 
 		// echo($sql);
 
-		if (mysqli_query($conexao, $sql)){
+		if (mysqli_query($conn, $sql)){
 			?><script> alert('Sub-Categoria alterada com sucesso!'); </script>"<?php
 				header("location:listaSubCategorias.php");
 		} else {
@@ -55,7 +53,7 @@
           ON sc.codCategoria = c.codigo
           WHERE sc.codigo=".$id;
   				// echo($sql);
-  				$select = mysqli_query($conexao, $sql);
+  				$select = mysqli_query($conn, $sql);
 
   				$rs = mysqli_fetch_array($select);
 
@@ -84,7 +82,7 @@
               <option value="<?php echo($rs['codCategoria']); ?>"><?php echo($rs['categoria']); ?></option>
               <?php
                 $newSql = "SELECT * from tbl_categoria WHERE codigo <> ".$codCategoria;
-                $select = mysqli_query($conexao, $newSql);
+                $select = mysqli_query($conn, $newSql);
                 while($newRs = mysqli_fetch_array($select)){
               ?>
               <option value="<?php echo($newRs['codCategoria']); ?>"><?php echo($newRs['categoria']); ?></option>

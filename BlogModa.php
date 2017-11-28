@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <?php
 
-  $conn = mysqli_connect('localhost', 'root', 'bcd127', 'db_delicia_gelada');
+  require_once("cms/include/conexao.php");
+  $conn = conexao();
 
   $sql = "SELECT * FROM tbl_modaVerao WHERE ativo =1;";
 

@@ -3,14 +3,15 @@
 
 	session_start();
 
-  $conexao = mysqli_connect('localhost', 'root', 'bcd127', 'db_delicia_gelada');
+	require_once("include/conexao.php");
+	$conn = conexao();
 
 	if(isset($_POST['btnEditar'])){
 
 		$nome = $_POST['txtNome'];
 		$usuario = $_POST['txtUsuario'];
 		$nivelUsuario = $_POST['selectNivel'];
-		$ativado = $_POST['ckAtivo'];
+		$ativado = $_POST['ckAtivar'];
 		$ativado = $ativado == "" ? 0 : $ativado;
 
 		$sql = "UPDATE tbl_Usuario
@@ -20,7 +21,7 @@
 
 		echo($sql);
 
-		if (mysqli_query($conexao, $sql)){
+		if (mysqli_query($conn, $sql)){
 			?><script> alert('Usuário alterado com sucesso!'); </script>"<?php
 				header("location:admUsuario.php");
 		} else {
@@ -54,10 +55,10 @@
   							ON u.codNivel = n.codNivel
   							WHERE u.codUsuario = '$id';";
 					// echo($sql);
-  				$select = mysqli_query($conexao, $sql);
+  				$select = mysqli_query($conn, $sql);
 
   				$rs = mysqli_fetch_array($select);
-					
+
           $codNivel= $rs['codNivel'];
 					$_SESSION['idU'] = $rs['codUsuario'];
 
@@ -66,13 +67,13 @@
   			Código:  <?php echo($id); ?><br>
   			Nome : <input type="text" name="txtNome" value="<?php echo($rs['nome']); ?>"><br>
   			Usuario: <input type="text" name="txtUsuario" value="<?php echo($rs['user']); ?>"> <br>
-				<input type="checkbox" name="ckAtivo" value="<?php echo(isset($_POST['ckAtivo']) ? '0' : '1');?> " <?php echo($rs['ativo'] == 1? 'checked' : ''); ?>>Usuario Ativado<br>
+				<input type="checkbox" name="ckAtivar" value="<?php echo(isset($_POST['ckAtivo']) ? '0' : '1');?> " <?php echo($rs['ativo'] == 1? 'checked' : ''); ?>>Usuario Ativado<br>
   			Nível:
         <select class="nivel" name="selectNivel">
           <option value="<?php echo($rs['codNivel']); ?>"><?php echo($rs['nivel']); ?></option>
           <?php
 	          $newSql = "SELECT * from tbl_NivelDeUsuario WHERE codNivel <> '$codNivel';";
-	          $select = mysqli_query($conexao, $newSql);
+	          $select = mysqli_query($conn, $newSql);
 	          while($newRs = mysqli_fetch_array($select)){
           ?>
           <option value="<?php echo($newRs['codNivel']); ?>"><?php echo($newRs['nivel']); ?></option>

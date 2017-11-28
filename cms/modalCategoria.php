@@ -3,16 +3,14 @@
 
 	session_start();
 
-  $conexao = mysqli_connect('localhost', 'root', 'bcd127', 'db_delicia_gelada');
+	require_once("include/conexao.php");
+	$conn = conexao();
 
 	if(isset($_POST['btnEditar'])){
 
 		$categoria = $_POST['txtCategoria'];
-		if(isset($_POST['ckAtivo'])){
-      $ativo = $_POST['ckAtivo'];
-    }else{
-      $ativo = 0;
-    }
+		$ativado = $_POST['ckAtivar'];
+		$ativado = $ativado == "" ? 0 : $ativado;
 
 		$sql = "UPDATE tbl_categoria
 						SET categoria = '$categoria',
@@ -21,7 +19,7 @@
 
 		// echo($sql);
 
-		if (mysqli_query($conexao, $sql)){
+		if (mysqli_query($conn, $sql)){
 			?><script> alert('Categoria alterada com sucesso!'); </script>"<?php
 				header("location:listaCategorias.php");
 		} else {
@@ -52,7 +50,7 @@
 				<?php
   				$sql = "SELECT * FROM tbl_categoria WHERE codigo=".$id;
   				// echo($sql);
-  				$select = mysqli_query($conexao, $sql);
+  				$select = mysqli_query($conn, $sql);
 
   				$rs = mysqli_fetch_array($select);
 
@@ -76,7 +74,7 @@
             </td>
 					</tr>
 					<tr>
-						<td>Ativar Categoria: <input type="checkbox" name="ckAtivo" value="1" <?php echo($at); ?>></td>
+						<td>Ativar Categoria: <input type="checkbox" name="ckAtivar" value="1" <?php echo($at); ?>></td>
 					</tr>
 					<tr>
 						<td><input type="submit" name="btnEditar" value="Editar"></td>

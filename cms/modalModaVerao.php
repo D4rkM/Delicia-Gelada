@@ -3,18 +3,22 @@
 
 	session_start();
 
-  $conexao = mysqli_connect('localhost', 'root', 'bcd127', 'db_delicia_gelada');
+	require_once("include/conexao.php");
+	$conn = conexao();
 
-// ação do botao editar
+	require_once("include/salvarImagem.php");
+
+	// ação do botao editar
 	if(isset($_POST['btnEditar'])){
 
 		$titulo = $_POST['txt_titulo'];
 		$texto1 = $_POST['txt1'];
 		$texto2 = $_POST['txt2'];
-		$ativo = $_POST['ckAtivar'];
 		$cod = $_SESSION['codModa'];
+		$ativado = $_POST['ckAtivar'];
+		$ativado = $ativado == "" ? 0 : $ativado;
 
-		$upload_dir = "img/produto/";
+
     $nome_arq = basename($_FILES['fotoImp']['name']);
 		if($nome_arq == ""){
 			$sql = "UPDATE tbl_modaVerao
@@ -26,40 +30,30 @@
 
 			// echo($sql);
 
-			if (mysqli_query($conexao, $sql)){
+			if (mysqli_query($conn, $sql)){
 				?><script> alert('Usuário alterado com sucesso!'); </script>"<?php
 					header("location:listaModaVerao.php");
 			} else {
 				echo("<script> alert('Não foi possível alterar a página..'); </script>");
 			}
-		}
-    //Verificando se a extensão é permitida
-    if(strstr($nome_arq,'.jpg') || strstr($nome_arq,'.png') || strstr($nome_arq,'.jpeg')){
-      $extensao = substr($nome_arq, strpos($nome_arq,"."), 5);
-      $prefixo = substr($nome_arq, 0, strpos($nome_arq,"."));
-      $nome_arq = md5($prefixo).$extensao;
+		}else{
+			$imagem = salvarImagem($nome_arq);
 
-      //Guardamos o caminho e o nome da imagem que será inserida no BD.
-      $upload_file = $upload_dir . $nome_arq;
+			$sql = "UPDATE tbl_modaVerao
+							SET texto1 = '$texto1',
+							texto2 = '$texto2',
+							titulo = '$titulo',
+							imagem = '$imagem',
+							ativo = '$ativo'
+							WHERE codigo = '$cod';";
 
-		  if (move_uploaded_file($_FILES['fotoImp']['tmp_name'], $upload_file)){
+			// echo($sql);
 
-				$sql = "UPDATE tbl_modaVerao
-								SET texto1 = '$texto1',
-								texto2 = '$texto2',
-								titulo = '$titulo',
-								imagem = '$upload_file',
-								ativo = '$ativo'
-								WHERE codigo = '$cod';";
-
-				echo($sql);
-
-				if (mysqli_query($conexao, $sql)){
-					?><script> alert('Usuário alterado com sucesso!'); </script>"<?php
-						header("location:listaModaVerao.php");
-				} else {
-					echo("<script> alert('Não foi possível alterar a página..'); </script>");
-				}
+			if (mysqli_query($conn, $sql)){
+				?><script> alert('Usuário alterado com sucesso!'); </script>"<?php
+					header("location:listaModaVerao.php");
+			} else {
+				echo("<script> alert('Não foi possível alterar a página..'); </script>");
 			}
 		}
 	}
@@ -86,7 +80,7 @@
 				<?php
   				$sql = "SELECT * FROM tbl_modaVerao WHERE codigo =".$id;
 					// echo($sql);
-  				$select = mysqli_query($conexao, $sql);
+  				$select = mysqli_query($conn, $sql);
 
   				$rs = mysqli_fetch_array($select);
 

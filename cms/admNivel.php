@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <?php
 //conexao com banco
-  $conexao = mysqli_connect('localhost', 'root','bcd127','db_delicia_gelada');
+  require_once("include/conexao.php");
+  $conn = conexao();
   // verifica a opção selecinada
 
   if(isset($_GET['modo'])){
@@ -9,9 +10,9 @@
 
     if($modo == "excluir"){
 
-      $sql = "DELETE FROM tbl_NivelDeUsuario WHERE codNivel=".$GET['codigo'];
+      $sql = "DELETE FROM tbl_NivelDeUsuario WHERE codNivel=".$_GET['codigo'];
       //deleta o arquivo
-      if(mysqli_query($conexao, $sql)){
+      if(mysqli_query($conn, $sql)){
         ?><script>alert("O nível foi deletado!");</script><?php
       }
 
@@ -79,7 +80,7 @@
         //select do nivel de ususario
             $sql = "SELECT * FROM tbl_NivelDeUsuario;";
 
-            $select = mysqli_query($conexao, $sql);
+            $select = mysqli_query($conn, $sql);
 
             while ($rs = mysqli_fetch_array($select)) {
 

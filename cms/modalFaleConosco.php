@@ -1,7 +1,8 @@
 <?php
 	$id = $_POST['id'];
 
-  $conexao = mysqli_connect('localhost', 'root', 'bcd127', 'db_delicia_gelada');
+	require_once("include/conexao.php");
+	$conn = conexao();
 
 ?>
 <html>
@@ -31,7 +32,7 @@ $(document).ready(function() {
 	      $sql = "SELECT * FROM tbl_faleconosco
 	              WHERE codFaleConosco = '$id';";
 
-	      $select = mysqli_query($conexao, $sql);
+	      $select = mysqli_query($conn, $sql);
 
 	      $rs = mysqli_fetch_array($select);
 	    ?>

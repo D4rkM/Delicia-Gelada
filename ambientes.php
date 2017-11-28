@@ -4,23 +4,27 @@
   $imgBackupMaps = null;
   $linkMaps = null;
 
-  $conexao = mysqli_connect('localhost','root','bcd127','db_delicia_gelada');
-
+  require_once("cms/include/conexao.php");
+  $conn = conexao();
+  
 //https://www.google.com/maps/d/embed?mid=1CYzUlr3su03f58pHZX1M_GOCPug
 
   $sql = "SELECT * FROM tbl_ambiente;";
 
-  $select = mysqli_query($conexao, $sql);
+  $select = mysqli_query($conn, $sql);
 
-    if ($rs = mysqli_fetch_array($select)){
-      $linkMaps = $rs['linkMaps'];
-      if (!$sock = @fsockopen($map, 8080, $num, $error, 5)){
-        $map = "não foi possivel se conectar com o maps";
-        }else{
-        $map  = '<iframe src="'.$linkMaps.'" width="1200" height="480"></iframe>';
-        return $map;
-      }
-    }
+  $rs = mysqli_fetch_array($select);
+
+  $map = $rs['linkMaps'];
+    // if ($rs = mysqli_fetch_array($select)){
+    //   $linkMaps = $rs['linkMaps'];
+    //   if (!$sock = @fsockopen($map, 8080, $num, $error, 5)){
+    //     $map = "não foi possivel se conectar com o maps";
+    //     }else{
+    //     $map  = '<iframe src="'.$linkMaps.'" width="1200" height="480"></iframe>';
+    //     return $map;
+    //   }
+    // }
 
 
 ?>
@@ -45,7 +49,7 @@
           <!-- Espaço de ambientes -->
           <div class="ambConteudo">
             <div class="amb_imagem">
-              <?php echo($map); ?>
+              <iframe src="<?php echo($map); ?>" width="" height=""></iframe>
             </div>
               <div class="amb_Descricao">
                   <!-- <h2>Sede da Empresa</h2>

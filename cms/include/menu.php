@@ -1,7 +1,13 @@
 <!-- MENU SUPERIOR DO CMS -->
 <?php
   session_start();
-  // echo($_SESSION['codUser']);
+
+  $conteudo = "#";
+  $faleConosco = "#";
+  $produtos = "#";
+  $usuarios = "#";
+
+    // echo($_SESSION['codUser']);
   if($_SESSION['codUser'] == 0){
     echo("<script>alert('Acesso inválido!')</script>");
     header('location:../index.php');
@@ -11,6 +17,28 @@
   $nomeUsuario = null;
   $codUser = $_SESSION['codUser'];
   $nivelUser = $_SESSION['nivelUser'];
+
+  $acesso = "SELECT * FROM tbl_nivelDeUsuario WHERE codNivel =".$nivelUser;
+
+  $execute = mysqli_query($conn, $acesso);
+
+  $rsAtivar = mysqli_fetch_array($execute);
+
+  if($rsAtivar['conteudo']){
+    $conteudo = "main.php";
+  }
+
+  if ($rsAtivar['faleConosco']) {
+    $faleConosco = "faleConosco.php";
+  }
+
+  if($rsAtivar['produtos']){
+    $produtos = "mainProduto.php";
+  }
+
+  if($rsAtivar['usuario']){
+    $usuario = "mainUsuario.php";
+  }
 
   $sql = "SELECT nome FROM tbl_Usuario WHERE codUsuario =".$codUser;
 
@@ -29,7 +57,7 @@
 ?>
 <nav>
   <div class="menu">
-    <a href="main.php">
+    <a href="<?php echo($conteudo);?>">
       <div class="">
         <img src="img/content.png" alt="Adm Conteudo">
       </div>
@@ -40,7 +68,7 @@
     </a>
   </div>
   <div class="menu">
-    <a href="faleConosco.php">
+    <a href="<?php echo($faleConosco);?>">
       <div class="">
         <img src="img/faleConosco.png" alt="Adm Fale conosco">
       </div>
@@ -48,7 +76,7 @@
     </a>
   </div>
   <div class="menu">
-    <a href="mainProduto.php" >
+    <a href="<?php echo($produtos);?>" >
       <div class="">
         <img src="img/admProd.png" alt="Adm Produtos">
       </div>
@@ -56,7 +84,7 @@
     </a>
   </div>
   <div class="menu">
-    <a href="mainUsuario.php">
+    <a href="<?php echo($usuario);?>">
       <div class="">
         <img src="img/users.png" alt="Adm Usuario">
       </div>

@@ -2,7 +2,8 @@
 
 <?php
 
-  $conexao = mysqli_connect('localhost','root','bcd127','db_delicia_gelada');
+  require_once("include/conexao.php");
+  $conn = conexao();
 
   if(isset($_POST['btnSalvar'])){
 
@@ -11,7 +12,8 @@
     $senha = $_POST['txtSenha'];
     $confSenha = $_POST['txtConfSenha'];
     $codNivel = $_POST['selectNivel'];
-    $ativado = 1;
+    $ativado = $_POST['ckAtivar'];
+    $ativado = $ativado == "" ? 0 : $ativado;
 
     if ($senha != $confSenha){
       echo("<script>alert('A senha não está correta..');</script>");
@@ -20,7 +22,7 @@
       $sql = "INSERT INTO tbl_Usuario(nome, user, senha, codNivel, ativo, foto)
         VALUES ('$nome','$usuario',md5('$senha'),'$codNivel','$ativado', '');";
 
-      if(mysqli_query($conexao, $sql)){
+      if(mysqli_query($conn, $sql)){
 
         echo("<script>alert('Usuário cadastrado com sucesso!');</script>");
       }else{
@@ -57,12 +59,12 @@
             Usuario: <input type="text" name="txtUsuario" placeholder="Insira o Usuário para acesso da conta"> <br>
             Senha: <input type="password" name="txtSenha" placeholder="Insira a senha de usuário"><br>
             Confirme a senha: <input type="password" name="txtConfSenha" placeholder="Insira a senha novamente"><br>
-            <input type="checkbox" name="ckAtivo" value=""/>Usuario Ativado<br>
+            <input type="checkbox" name="ckAtivar" value=""/>Usuario Ativado<br>
             Nível:
             <select class="nivel" name="selectNivel">
               <?php
                 $newSql = "SELECT * from tbl_NivelDeUsuario;";
-                $select = mysqli_query($conexao, $newSql);
+                $select = mysqli_query($conn, $newSql);
                 while($newRs = mysqli_fetch_array($select)){
               ?>
               <option value="<?php echo($newRs['codNivel']); ?>"><?php echo($newRs['nivel']); ?></option>

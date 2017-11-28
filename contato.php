@@ -15,12 +15,14 @@ $desc_info = null;
 //Conexão com o banco de dados
 
 //Estabelecendo conexao
-$conexao = mysqli_connect("localhost","root","bcd127", "db_delicia_gelada");
+
+  require_once("cms/include/conexao.php");
+  $conn = conexao();
 
 //Checa conexao
-if (!$conexao) {
+  if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
-}
+  }
 
 //Ativando o Banco a ser utilizado
 
@@ -45,14 +47,14 @@ if(isset($_POST['btnEnviar'])){
 
 //Executando Script no BD
 
-  if(mysqli_query($conexao, $sql)){
+  if(mysqli_query($conn, $sql)){
 
     echo('<script tipe="text/javascript"> alert("Dados enviados com Sucesso, em breve nossos analistas lhe responderão!! Obrigado!"); </script>');
     //fechando conexao com banco
-    mysqli_close($conexao);
+    mysqli_close($conn);
     header('location:Contato.php');
   } else{
-    echo ("<script>alert(Sinto muito tivemos um erro de conexão com nosso banco de dados... <br>" .$sql. "<br>" . mysqli_error($conexao).');</script>');
+    echo ("<script>alert(Sinto muito tivemos um erro de conexão com nosso banco de dados... <br>" .$sql. "<br>" . mysqli_error($conn).');</script>');
   }
   // echo($sql);
 }

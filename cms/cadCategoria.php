@@ -2,17 +2,19 @@
 
 <?php
 
-  $conexao = mysqli_connect('localhost','root','bcd127','db_delicia_gelada');
+  require_once("include/conexao.php");
+  $conn = conexao();
 
   if(isset($_POST['btnSalvar'])){
 
     $nome = $_POST['txtCategoria'];
-    $ativo = 1;//$_POST['ckativo'];
+    $ativado = $_POST['ckAtivar'];
+    $ativado = $ativado == "" ? 0 : $ativado;
 
     $sql = "INSERT INTO tbl_categoria(categoria, ativo)
       VALUES ('$nome', '$ativo');";
 
-    if(mysqli_query($conexao, $sql)){
+    if(mysqli_query($conn, $sql)){
       echo("<script>alert('Suco Cadastrado com Sucesso');</script>");
     }else{
       // echo($sql);
@@ -43,7 +45,7 @@
                 <td>Nome da Categoria : <input type="text" name="txtCategoria" placeholder="'Gelo Congelante'." required></td>
               </tr>
               <tr>
-                <td><input type="checkbox" name="ckAtivo" value="">Ativo <br></td>
+                <td><input type="checkbox" name="ckAtivar" value="">Ativo <br></td>
               </tr>
               <tr>
                 <td><input type="submit" name="btnSalvar" value="Salvar"></td>

@@ -6,7 +6,10 @@
   $texto1 = null;
   $texto2 = null;
 
-  $conn = mysqli_connect('localhost','root','bcd127','db_delicia_gelada');
+  require_once("include/conexao.php");
+  $conn = conexao();
+
+  require_once("incluce/salvarImagem.php");
 
   if(isset($_POST['btnSalvar'])){
 
@@ -14,47 +17,28 @@
     $texto1 = $_POST['txt1'];
     $texto2 = $_POST['txt2'];
 
-
-    $upload_dir = "../img/blog/";
-    $ativo = 1;
-
+    $ativado = $_POST['ckAtivar'];
+		$ativado = $ativado == "" ? 0 : $ativado;
     // Pegando nome e extensão da imagem
     $nome_arq = basename($_FILES['fotoImp']['name']);
 
-    //Verificando se a extensão é permitida
-    if(strstr($nome_arq,'.jpg') || strstr($nome_arq,'.png') || strstr($nome_arq,'.gif')){
-      $extensao = substr($nome_arq, strpos($nome_arq,"."), 5);
-      $prefixo = substr($nome_arq, 0, strpos($nome_arq,"."));
-      $nome_arq = md5($prefixo).$extensao;
+    $imagem = salvarImagem($nome_arq);
 
-      //Guardamos o caminho e o nome da imagem que será inserida no BD.
-      $upload_file = $upload_dir . $nome_arq;
+    //Atualizando Outros campos para alterar dados da página
+    $sql = "UPDATE tbl_modaVerao
+            SET ativo = 0;";
+    mysqli_query($conn, $sql);
 
-      if (move_uploaded_file($_FILES['fotoImp']['tmp_name'], $upload_file)){
-        //Atualizando Outros campos para alterar dados da página
-        $sql = "UPDATE tbl_modaVerao
-                SET ativo = 0;";
-        mysqli_query($conn, $sql);
+    $sql="INSERT INTO tbl_modaVerao(titulo, imagem, texto1, texto2, ativo)
+          VALUES ('$titulo', '$imagem', '$texto1', '$texto1', '$ativo');";
 
-        $sql="INSERT INTO tbl_modaVerao(titulo, imagem, texto1, texto2, ativo)
-              VALUES ('$titulo', '$upload_file', '$texto1', '$texto1', '$ativo');";
+    if(mysqli_query($conn, $sql)){
+      header('location:modaVerao.php');
 
-        if(mysqli_query($conn, $sql)){
-          header('location:modaVerao.php');
-
-          echo("Arquivo movido com sucesso");
-        }else{
-          echo("Erro ao tentar enviar dados para o banco\n" .$sql);
-        }
-
-      }else{
-          echo("O arquivo não pode ser movido para o servidor");
-      }
-
+      echo("Arquivo movido com sucesso");
     }else{
-        echo('Extensão Inválida!!!!');
+      echo("Erro ao tentar enviar dados para o banco\n" .$sql);
     }
-
   }
 
 ?>
@@ -92,7 +76,7 @@
               Foto: <input type="file" name="fotoImp">
             </div>
             <div class="">
-              Ativar Página: <input type="checkbox" name="cbxAtivar" value="1">
+              Ativar Página: <input type="checkbox" name="ckAtivar" value="1">
             </div>
             <div class="">
               <input type="submit" name="btnSalvar" value="Salvar">

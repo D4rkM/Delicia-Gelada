@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <?php
-  $conn = mysqli_connect("localhost","root","bcd127","db_delicia_gelada");
+require_once("cms/include/conexao.php");
+$conn = conexao();
 
-
- ?>
+?>
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Delícia Gelada</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" href="css/asdf.css">
     <script src="js/jquery11.js" type="text/javascript"></script>
     <script src="js/Jcycle.js" type="text/javascript"></script>
     <script src="js/configSlider.js" type="text/javascript">
@@ -22,6 +23,9 @@
     <div class="main">
       <header>
         <?php include("include/slider.php") ?>
+        <div class="imagemSlide">
+          <img src="cms/img/produto/28f4e638fbcacc4dcf40a55c12a218d0.jpg" alt="imagem">
+        </div>
       </header>
       <!-- CONTEUDO -->
       <div class="conteudo">
@@ -33,13 +37,14 @@
             <?php
             // Lógica para passar dados do banco para o site SIMULAÇÃO
             $sql = "SELECT * FROM tbl_categoria WHERE ativo = 1;";
-            $select  = mysqli_query($conn, $sql);
+            $select = mysqli_query($conn, $sql);
               while($rs = mysqli_fetch_array($select)){
 
             ?>
             <div class="categorias">
               <h3><?php echo($rs['categoria']); ?></h3>
-                <ul>
+              <div class="subCategoria">
+                <ul class="">
                   <?php
                     $sqlProd = "SELECT * FROM tbl_subCategoria WHERE ativo = 1 AND codCategoria =".$rs['codigo'];
 
@@ -53,6 +58,8 @@
                     }
                   ?>
                 </ul>
+              </div>
+
             </div>
             <?php
             }
@@ -67,38 +74,40 @@
 
           $select = mysqli_query($conn,$sql);
           if(mysqli_num_rows($select) > 0){
-            $lstProdutos = array();
-            while($rs = mysqli_fetch_assoc($select)){
-              $lstProdutos [] = $rs;
-            }
+            // $lstProdutos = list($);
+            // while($rs = mysqli_fetch_assoc($select)){
+            //   $lstProdutos [] = $rs;
+            // }
 
             $i = 0;
             $a = 0;
-            while ($i < mysqli_num_rows($select)) {
+            $faixas = mysqli_num_rows($select) / 3;
+
+            // while ($i < $faixas && $rs = mysqli_fetch_array($select)) {
               # code...
               $i = $i + 1;
              ?>
              <div class="faixa_produto">
                <?php
-               while () {
-                 if($a >= 2){
-
-                  break;
-                 }
+               //Carregando produtos para o site
+               while ($rs = mysqli_fetch_array($select)) {
+                //  if($a >= 2){
+                 //
+                //   break;
+                //  }
+                // var_dump($lstProdutos);
                  $a = $a + 1;
                ?>
-               <div class="imgProduto">
 
-               </div>
                <div class="produto">
                  <div class="img_produto">
-                  <a href="#"><img src="img/promo.jpeg" alt="Produto"/></a>
+                  <a href="#"><img src="cms/<?php echo($rs['foto'])?>" alt="Produto"/></a>
                 </div>
                 <div class="info">
                   <ul>
-                    <li>Nome: <?php echo("Suco");  ?></li>
-                    <li>Descrição: <?php echo("Bebida gelada"); ?></li>
-                    <li>Preço: <?php echo("$$$")?></li>
+                    <li>Nome: <?php echo($rs['nome']);  ?></li>
+                    <li>Descrição: <?php echo($rs['descricao']); ?></li>
+                    <li>Preço: <?php echo($rs['preco'])?></li>
                   </ul>
                  </div>
                  <div class="detalhes">
@@ -109,7 +118,7 @@
                $a = 0;?>
              </div>
           <?php
-            }
+            // }
           }
              ?>
         </div>

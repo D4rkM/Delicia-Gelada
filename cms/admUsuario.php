@@ -10,7 +10,8 @@
 
   // CONEXÃO COM BANCO DE dados
   //Estabelece a conexão com o banco
-  $conexao = mysqli_connect("localhost","root","bcd127", "db_delicia_gelada");
+  require_once("include/conexao.php");
+  $conn = conexao();
   include('include/login.php');
   //Declarando constantes --
   define('Campos_obg','Preencha todos os campos obrigatórios!.(*)');
@@ -25,7 +26,7 @@
       $codigo=$_GET['codigo'];
       //Deleta no BD o registro
       $sql = "DELETE FROM tbl_Usuario WHERE codUsuario =".$codigo;
-      mysqli_query($conexao, $sql);
+      mysqli_query($conn, $sql);
       //Redireciona para a pagina inicial pa ra apagar o GET da variavel
       header('location:admUsuario.php');
 
@@ -44,7 +45,7 @@
       ON u.codNivel = n.codNivel
       WHERE u.codUsuario = ".$codigo;
 
-      $select = mysqli_query($conexao, $sql);
+      $select = mysqli_query($conn, $sql);
 
       //Consulta para ver se o usuario está no banco
       if($rsConsulta = mysqli_fetch_array($select)){
@@ -65,7 +66,7 @@
                 SET ativo = 1
                 WHERE codUsuario =".$codUser;
 
-        if(mysqli_query($conexao, $sql)){
+        if(mysqli_query($conn, $sql)){
           echo("foi pra 1");
         }else{
           echo("não foi pra 1");
@@ -77,7 +78,7 @@
                 SET ativo = 0
                 WHERE codUsuario =".$codUser;
 
-        if(mysqli_query($conexao, $sql)){
+        if(mysqli_query($conn, $sql)){
           echo("foi pra 0");
         }else{
           echo("não foi pra 0");
@@ -161,7 +162,7 @@
             ON u.codNivel = n.codNivel
             ORDER BY n.codNivel;";
 
-            $select = mysqli_query($conexao, $sql);
+            $select = mysqli_query($conn, $sql);
 
             while ($rs = mysqli_fetch_array($select)) {
               $at = "";

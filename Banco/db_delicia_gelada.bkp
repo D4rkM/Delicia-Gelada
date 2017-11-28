@@ -1,0 +1,325 @@
+-- MySQL dump 10.13  Distrib 5.7.19, for Win64 (x86_64)
+--
+-- Host: localhost    Database: db_delicia_gelada
+-- ------------------------------------------------------
+-- Server version	5.7.19-log
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `tbl_ambiente`
+--
+
+DROP TABLE IF EXISTS `tbl_ambiente`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tbl_ambiente` (
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
+  `nomeLocal` varchar(45) DEFAULT NULL,
+  `nomeProprietario` varchar(60) DEFAULT NULL,
+  `descLocal` varchar(100) DEFAULT NULL,
+  `linkMaps` varchar(300) DEFAULT NULL,
+  `imgBackupMaps` varchar(80) DEFAULT NULL,
+  `fotoLocal1` varchar(80) DEFAULT NULL,
+  `fotoLocal2` varchar(80) DEFAULT NULL,
+  `fotoLocal3` varchar(80) DEFAULT NULL,
+  `fotoLocal4` varchar(80) DEFAULT NULL,
+  PRIMARY KEY (`codigo`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_ambiente`
+--
+
+LOCK TABLES `tbl_ambiente` WRITE;
+/*!40000 ALTER TABLE `tbl_ambiente` DISABLE KEYS */;
+INSERT INTO `tbl_ambiente` VALUES (1,'Sede da Empresa','Proprietário - Sr. Woody WoodPecker ','Cidade Infernal - Av. Buzz Buzard, nº 666','https://www.google.com/maps/d/embed?mid=1CYzUlr3su03f58pHZX1M_GOCPug','Extensão Inválida','../img/BkpMap/000c016d34ff41e245b69c67f22c83ff.jpg','../img/BkpMap/5aeb1f62f6cd496dc81c07d58b82f143.jpg','../img/BkpMap/bcb3798d312ed46335afe6b1c0ebd398.jpg','../img/BkpMap/5415c7fe534a63366b48d388f204c328.jpg');
+/*!40000 ALTER TABLE `tbl_ambiente` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tbl_categoria`
+--
+
+DROP TABLE IF EXISTS `tbl_categoria`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tbl_categoria` (
+  `codCategoria` int(11) NOT NULL AUTO_INCREMENT,
+  `categoria` varchar(45) NOT NULL,
+  PRIMARY KEY (`codCategoria`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_categoria`
+--
+
+LOCK TABLES `tbl_categoria` WRITE;
+/*!40000 ALTER TABLE `tbl_categoria` DISABLE KEYS */;
+INSERT INTO `tbl_categoria` VALUES (1,'teste'),(2,'teste1'),(3,'teste2'),(4,'teste3');
+/*!40000 ALTER TABLE `tbl_categoria` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tbl_faleconosco`
+--
+
+DROP TABLE IF EXISTS `tbl_faleconosco`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tbl_faleconosco` (
+  `codFaleConosco` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) NOT NULL,
+  `telefone` varchar(14) DEFAULT NULL,
+  `celular` varchar(15) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `home_page` varchar(40) DEFAULT NULL,
+  `facebook` varchar(30) DEFAULT NULL,
+  `sexo` char(1) NOT NULL,
+  `profissao` varchar(30) NOT NULL,
+  `desc_sugestao` varchar(3000) DEFAULT NULL,
+  `desc_informacao` varchar(3000) DEFAULT NULL,
+  PRIMARY KEY (`codFaleConosco`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_faleconosco`
+--
+
+LOCK TABLES `tbl_faleconosco` WRITE;
+/*!40000 ALTER TABLE `tbl_faleconosco` DISABLE KEYS */;
+INSERT INTO `tbl_faleconosco` VALUES (7,'asdfasdf','(66) 6666-6666','(33) 33333-3333','jooj@ete.jooj','','','M','asdfasf','aaaaaaaaaaaaaaaaaaa','aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+/*!40000 ALTER TABLE `tbl_faleconosco` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tbl_importanciasuco`
+--
+
+DROP TABLE IF EXISTS `tbl_importanciasuco`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tbl_importanciasuco` (
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
+  `texto1` varchar(1000) NOT NULL,
+  `texto2` varchar(1000) NOT NULL,
+  `texto3` varchar(1000) NOT NULL,
+  `texto4` varchar(1000) NOT NULL,
+  `subtexto` varchar(800) NOT NULL,
+  `titulo` varchar(50) NOT NULL,
+  `subtitulo` varchar(50) NOT NULL,
+  `imagem` varchar(80) NOT NULL,
+  `ativo` tinyint(4) NOT NULL,
+  PRIMARY KEY (`codigo`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_importanciasuco`
+--
+
+LOCK TABLES `tbl_importanciasuco` WRITE;
+/*!40000 ALTER TABLE `tbl_importanciasuco` DISABLE KEYS */;
+INSERT INTO `tbl_importanciasuco` VALUES (1,'asdfasdfasdf','asdfasdfdasf','asdfasdfas','dfasdfasdf','asdfasdfdasfasdf','teste','asdfasdf','img/produto/0012cf765bf4af51068dfb3f6772cf1d.png',1),(2,'asdfdasfasdfdasf','asdfasdfasdfasdfdasfas','','','','teste','','../img/blog/5aeb1f62f6cd496dc81c07d58b82f143.jpg',0),(3,'asdfdasfasdfasdfdasfasdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff','asdfasdfasdfasdf','asdfdasfasdfasd','fasdfasdfasdfasdf','fdasfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfdasffasdfdfasdfasdfasd','teste','asdfasdfasdfas','img/produto/0012cf765bf4af51068dfb3f6772cf1d.png',0),(4,'asdfadsf','asdfasdfdasf','asdfdasfasdf','asdfasdfasdf','asdfdasfdasfasdfasdfa','asdgf','asdfasdfasd','../img/blog/5aeb1f62f6cd496dc81c07d58b82f143.jpg',0),(5,'asdfasdfasdfads','asdfasdfasdf','asdfasdfasdfasdf','dasfasdfasdfdas','dasfasdfdasfasdfsdaf','asdfasdfasdf','fdasfasdfasdf','../img/blog/79958cabcbd8ab4afe3279374677ede2.jpg',0),(6,'asdfasdfasdf','asdfasdfasdfdasf','asdfasdfdasfasd','fdasfdasfasdfdf','asdfasdfasdfasdfasdf','asdfasdfasdf','asdfasdfasdf','../img/blog/5aeb1f62f6cd496dc81c07d58b82f143.jpg',0),(7,'asdfasdfasd','fasdfasdf','asdfasdfasdfasd','fasdfasdfasd','asdfasdfdasfasdf','asdfasdf','fasdfasdf','../img/blog/bcb3798d312ed46335afe6b1c0ebd398.jpg',0),(8,'fasdfasdfasdfasdfasdf','asdfasdfasdfasdfas','dfdasfasdfdasfasdf','asdfasdfsadfdasf','fasdfasdfdasfdasf','asdfasdfasdfasd','asdfdasfdas','../img/blog/5aeb1f62f6cd496dc81c07d58b82f143.jpg',0);
+/*!40000 ALTER TABLE `tbl_importanciasuco` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tbl_modaverao`
+--
+
+DROP TABLE IF EXISTS `tbl_modaverao`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tbl_modaverao` (
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(50) NOT NULL,
+  `imagem` varchar(80) NOT NULL,
+  `texto1` varchar(1000) NOT NULL,
+  `texto2` varchar(1000) NOT NULL,
+  `ativo` tinyint(4) NOT NULL,
+  PRIMARY KEY (`codigo`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_modaverao`
+--
+
+LOCK TABLES `tbl_modaverao` WRITE;
+/*!40000 ALTER TABLE `tbl_modaverao` DISABLE KEYS */;
+INSERT INTO `tbl_modaverao` VALUES (1,'teste','img/produto/51b6076ed7a7f544f55a9f5868fc8359.jpeg','teste','asdfasdfasdfasdfasdfas',1),(2,'A moda do Verão','../img/blog/28f4e638fbcacc4dcf40a55c12a218d0.jpg','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.','Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',0),(3,'asdfdasfadsf','../img/blog/5aeb1f62f6cd496dc81c07d58b82f143.jpg','asdfasdfasdfasdf','asdfasdfasdfasdf',0),(4,'Moda Verão','../img/blog/000c016d34ff41e245b69c67f22c83ff.jpg','ajsdfldjasfljasdflasdfljaslfjlasjflsdfl','ajsdfldjasfljasdflasdfljaslfjlasjflsdfl',0);
+/*!40000 ALTER TABLE `tbl_modaverao` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tbl_niveldeusuario`
+--
+
+DROP TABLE IF EXISTS `tbl_niveldeusuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tbl_niveldeusuario` (
+  `codNivel` int(11) NOT NULL AUTO_INCREMENT,
+  `nivel` varchar(50) NOT NULL,
+  PRIMARY KEY (`codNivel`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_niveldeusuario`
+--
+
+LOCK TABLES `tbl_niveldeusuario` WRITE;
+/*!40000 ALTER TABLE `tbl_niveldeusuario` DISABLE KEYS */;
+INSERT INTO `tbl_niveldeusuario` VALUES (1,'Administrador do Sistema'),(2,'Operador básico'),(3,'Cataloguista');
+/*!40000 ALTER TABLE `tbl_niveldeusuario` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tbl_produto`
+--
+
+DROP TABLE IF EXISTS `tbl_produto`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tbl_produto` (
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(45) NOT NULL,
+  `preco` double NOT NULL,
+  `descricao` varchar(120) DEFAULT NULL,
+  `codCategoria` int(11) DEFAULT NULL,
+  `ativo` tinyint(4) DEFAULT NULL,
+  `foto` varchar(80) DEFAULT NULL,
+  PRIMARY KEY (`codigo`),
+  KEY `fk_categoria_idx` (`codCategoria`),
+  CONSTRAINT `fk_categoria` FOREIGN KEY (`codCategoria`) REFERENCES `tbl_categoria` (`codCategoria`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_produto`
+--
+
+LOCK TABLES `tbl_produto` WRITE;
+/*!40000 ALTER TABLE `tbl_produto` DISABLE KEYS */;
+INSERT INTO `tbl_produto` VALUES (1,'teste',12,'teste',1,0,'img/produto/0012cf765bf4af51068dfb3f6772cf1d.png'),(2,'teste2',15,'dfaasdfasdfs',2,0,'img/produto/51b6076ed7a7f544f55a9f5868fc8359.jpeg');
+/*!40000 ALTER TABLE `tbl_produto` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tbl_promocao`
+--
+
+DROP TABLE IF EXISTS `tbl_promocao`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tbl_promocao` (
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
+  `codProduto` int(11) NOT NULL,
+  `tituloPromocao` varchar(45) NOT NULL,
+  `desconto` int(11) NOT NULL,
+  `ativo` tinyint(4) NOT NULL,
+  `promoCode` varchar(10) DEFAULT NULL,
+  `descricao` varchar(120) DEFAULT NULL,
+  `promoMes` tinyint(4) DEFAULT NULL,
+  PRIMARY KEY (`codigo`),
+  KEY `fk_produto_idx` (`codProduto`),
+  CONSTRAINT `fk_produto` FOREIGN KEY (`codProduto`) REFERENCES `tbl_produto` (`codigo`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_promocao`
+--
+
+LOCK TABLES `tbl_promocao` WRITE;
+/*!40000 ALTER TABLE `tbl_promocao` DISABLE KEYS */;
+INSERT INTO `tbl_promocao` VALUES (1,1,'asdfdasfdasf',50,1,'','Aproveite o verão com essa delicia super gelada!!!',1),(2,2,'Suco do Mês',70,1,'','O Suco Feito para Você!!',0);
+/*!40000 ALTER TABLE `tbl_promocao` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tbl_slider`
+--
+
+DROP TABLE IF EXISTS `tbl_slider`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tbl_slider` (
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
+  `setaEsc` varchar(80) DEFAULT NULL,
+  `setaDir` varchar(80) DEFAULT NULL,
+  `img1` varchar(80) DEFAULT NULL,
+  `img2` varchar(80) DEFAULT NULL,
+  `img3` varchar(80) DEFAULT NULL,
+  `img4` varchar(80) DEFAULT NULL,
+  `img5` varchar(80) DEFAULT NULL,
+  `img6` varchar(80) DEFAULT NULL,
+  `ativo` tinyint(4) NOT NULL,
+  PRIMARY KEY (`codigo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_slider`
+--
+
+LOCK TABLES `tbl_slider` WRITE;
+/*!40000 ALTER TABLE `tbl_slider` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_slider` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tbl_usuario`
+--
+
+DROP TABLE IF EXISTS `tbl_usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tbl_usuario` (
+  `codUsuario` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) NOT NULL,
+  `user` varchar(10) NOT NULL,
+  `senha` varchar(35) NOT NULL,
+  `codNivel` int(11) NOT NULL,
+  `ativo` tinyint(4) NOT NULL,
+  `foto` varchar(80) DEFAULT NULL,
+  PRIMARY KEY (`codUsuario`),
+  KEY `fk_nivel` (`codNivel`),
+  CONSTRAINT `fk_nivel` FOREIGN KEY (`codNivel`) REFERENCES `tbl_niveldeusuario` (`codNivel`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbl_usuario`
+--
+
+LOCK TABLES `tbl_usuario` WRITE;
+/*!40000 ALTER TABLE `tbl_usuario` DISABLE KEYS */;
+INSERT INTO `tbl_usuario` VALUES (2,'irineu','irineu','202cb962ac59075b964b07152d234b70',2,1,NULL),(3,'user','us','7b774effe4a349c6dd82ad4f4f21d34c',1,1,'');
+/*!40000 ALTER TABLE `tbl_usuario` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2017-11-06 23:12:26

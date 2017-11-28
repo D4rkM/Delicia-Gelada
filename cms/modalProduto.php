@@ -3,7 +3,10 @@
 
 	session_start();
 
-  $conexao = mysqli_connect('localhost', 'root', 'bcd127', 'db_delicia_gelada');
+	require_once("include/conexao.php");
+	$conn = conexao();
+
+	required_once("include/salvarImagem.php");
 
 	if(isset($_POST['btnEditar'])){
 
@@ -12,13 +15,9 @@
 		$subCategoria = $_POST['selectSubCategoria'];
 		$descricao = $_POST['txtDescricao'];
 
-    if(isset($_POST['ckAtivo'])){
-      $ativo = $_POST['ckAtivo'];
-    }else{
-      $ativo = 0;
-    }
+		$ativado = $_POST['ckAtivar'];
+		$ativado = $ativado == "" ? 0 : $ativado;
 
-    $upload_dir = "img/produto/";
     $nome_arq = basename($_FILES['fotoImp']['name']);
     if($nome_arq == ""){
 
@@ -32,46 +31,33 @@
 
 			// echo($sql);
 
-			if (mysqli_query($conexao, $sql)){
+			if (mysqli_query($conn, $sql)){
 				?><script> alert('Usuário alterado com sucesso!'); </script>"<?php
 					header("location:listaProdutos.php");
 			} else {
 				echo("<script> alert('Não foi possível alterar a página..'); </script>");
 			}
+		}else{
+			$foto = salvarImagem($nome_arq);
+
+			$sql = "UPDATE tbl_produto
+			SET nome = '$nome',
+			preco = '$preco',
+			descricao = '$descricao',
+			codSubCategoria = '$subCategoria',
+			foto = '$foto',
+			ativo = '$ativo'
+			WHERE codigo = ".$_SESSION['codProd'];
+
+			// echo($sql);
+
+			if (mysqli_query($conn, $sql)){
+				?><script> alert('Produto alterado com sucesso!'); </script>"<?php
+				header("location:listaProdutos.php");
+			} else {
+				echo("<script> alert('Não foi possível alterar o produto..'); </script>");
+			}
 		}
-    //Verificando se a extensão é permitida
-    if(strstr($nome_arq,'.jpg') || strstr($nome_arq,'.png') || strstr($nome_arq,'.jpeg')){
-      $extensao = substr($nome_arq, strpos($nome_arq,"."), 5);
-      $prefixo = substr($nome_arq, 0, strpos($nome_arq,"."));
-      $nome_arq = md5($prefixo).$extensao;
-
-      //Guardamos o caminho e o nome da imagem que será inserida no BD.
-      $upload_file = $upload_dir . $nome_arq;
-
-      if (move_uploaded_file($_FILES['fotoImp']['tmp_name'], $upload_file)){
-
-        $sql = "UPDATE tbl_produto
-        SET nome = '$nome',
-        preco = '$preco',
-        descricao = '$descricao',
-        codSubCategoria = '$subCategoria',
-        foto = '$upload_file',
-        ativo = '$ativo'
-        WHERE codigo = ".$_SESSION['codProd'];
-
-        // echo($sql);
-
-        if (mysqli_query($conexao, $sql)){
-    			?><script> alert('Produto alterado com sucesso!'); </script>"<?php
-    			header("location:listaProdutos.php");
-    		} else {
-    			echo("<script> alert('Não foi possível alterar o produto..'); </script>");
-    		}
-
-      }
-
-    }
-
 	}
 ?>
 <html>
@@ -96,7 +82,7 @@
 				<?php
   				$sql = "SELECT * FROM tbl_produto WHERE codigo=".$id;
   				// echo($sql);
-  				$select = mysqli_query($conexao, $sql);
+  				$select = mysqli_query($conn, $sql);
 
   				$rs = mysqli_fetch_array($select);
 
@@ -128,7 +114,7 @@
               <?php
                 $sql ="SELECT * FROM tbl_categoria WHERE ativo = 1;";
 
-                $select = mysqli_query($conexao, $sql);
+                $select = mysqli_query($conn, $sql);
 
                 while($rs = mysqli_fetch_array($select)){
                ?>
@@ -136,7 +122,7 @@
                 <?php
                   $newSql = "SELECT * FROM tbl_subCategoria WHERE ativo = 1 AND codCategoria =".$rs['codigo'];
 
-                  $subSelect = mysqli_query($conexao, $newSql);
+                  $subSelect = mysqli_query($conn, $newSql);
 
                   while($newRs = mysqli_fetch_array($subSelect)){
                 ?>
@@ -151,7 +137,7 @@
             <td>Foto: <input type="file" name="fotoImp"></td>
           </tr>
           <tr>
-            <td><input type="checkbox" name="ckAtivo" value="1" <?php echo($at); ?>>Ativo <br></td>
+            <td><input type="checkbox" name="ckAtivar" value="1" <?php echo($at); ?>>Ativo <br></td>
           </tr>
 					<tr>
 						<td><input type="submit" name="btnEditar" value="Editar"></td>

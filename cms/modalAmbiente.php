@@ -1,24 +1,31 @@
 <?php
 	$id = $_POST['id'];
 
-  $conexao = mysqli_connect('localhost', 'root', 'bcd127', 'db_delicia_gelada');
+	require_once("include/conexao.php");
+	$conn = conexao();
 
   session_start();
+
+	require_once("include/salvarImagem.php");
 
   if(isset($_POST['btnEditar'])){
     $nomeLocal = $_POST['txtLogradouro'];
     $nomeProprietario = $_POST['txtProprietario'];
     $descLocal = $_POST['txtDesc'];
     $linkMaps = $_POST['linkMaps'];
+		$nome_arq = basename($_FILES['bkpImg']['name']);
+		$imgBackup = salvarImagem($nome_arq);
 
     //ATUALIZANDO AMBIENTE
     $sql="UPDATE tbl_ambiente
     SET nomeLocal = '$nomeLocal',
      nomeProprietario='$nomeProprietario',
      descLocal='$descLocal',
-     linkMaps='$linkMaps' WHERE codigo = ".$_SESSION['cod'];
-     echo($sql);
-    if(mysqli_query($conexao, $sql)){
+     linkMaps='$linkMaps',
+		 imbBackupMaps = '$imgBackup'
+		 WHERE codigo = ".$_SESSION['cod'];
+     // echo($sql);
+    if(mysqli_query($conn, $sql)){
       header('location:listaAmbiente.php');
 
       echo("Arquivo movido com sucesso");
@@ -49,7 +56,7 @@
 	<div>
 		<a href="#" class="fechar">Fechar(x)</a>
 	</div>
-  <form class="frmEditAmb" action="modalAmbiente.php" method="post">
+  <form class="frmEditAmb" action="modalAmbiente.php" enctype="multipart/form-data" method="post">
 
   	<div id="verDados">
   		<table width="500" height="500" border="solid">
@@ -58,7 +65,7 @@
   	      $sql = "SELECT * FROM tbl_ambiente
   	              WHERE codigo = '$id';";
 
-  	      $select = mysqli_query($conexao, $sql);
+  	      $select = mysqli_query($conn, $sql);
 
   	      $rs = mysqli_fetch_array($select);
           $_SESSION['cod'] = $rs['codigo'];
@@ -79,6 +86,9 @@
   	    <tr>
   	    	<td>Link para o google Maps: <input type="url" name="linkMaps" placeholder="Link compartilhado do mapa" maxlength="180" required value="<?php echo($rs['linkMaps']); ?>"></td>
   	    </tr>
+				<tr>
+					<td>Foto de Backup: <input type="file" name="fotoImp"> </td>
+				</tr>
         <tr>
           <td><input type="submit" name="btnEditar" value="Editar"></td>
         </tr>

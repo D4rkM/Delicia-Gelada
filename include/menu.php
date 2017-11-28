@@ -5,7 +5,8 @@
   $senha = null;
   // echo("<script>alert('$login')</script>");
 
-  $conexao = mysqli_connect('localhost', 'root', 'bcd127', 'db_delicia_gelada');
+  require_once("cms/include/conexao.php");
+  $conn = conexao();
 
   if(isset($_POST['btnEntrar'])){
 
@@ -18,7 +19,7 @@
     //Evita SqlInjection
     // addslashes($sql);
 
-    $select = mysqli_query($conexao, $sql);
+    $select = mysqli_query($conn, $sql);
 
     if($rs = mysqli_fetch_array($select)){
       // define('idUsuario', $rs['codUsuario']);
@@ -77,7 +78,7 @@
           <ul id = "menu">
 				<li><a href="index.php">Home</a></li>
 				<li>
-					<a href="blog.php">Blog</a>
+					<a href="#">Blog</a>
 					<div class="divsubmenu">
 						<ul class="submenu">
 							<li> <a href="BlogSucoNatural.php">Importância do Suco</a> </li>
@@ -85,10 +86,10 @@
 						</ul>
 					</div>
 				</li>
-				<li><a href="promocoes.php">Promoções</a>
+				<li><a href="#">Promoções</a>
           <div class="divsubmenu">
             <ul class="submenu">
-              <li> <a href="promoSucoDoMes.php">Especial do dia</a> </li>
+              <li> <a href="promocoes.php">Todas as Promoções</a> </li>
               <li> <a href="promoSucoDoMes.php">Suco do mês</a> </li>
             </ul>
           </div></li>
