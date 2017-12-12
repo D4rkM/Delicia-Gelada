@@ -2,9 +2,9 @@
 require_once("cms/include/conexao.php");
 $conn = conexao();
 
-  $sql = "SELECT * FROM tbl_slider WHERE ativo =1;";
+  $sliderSql = "SELECT * FROM tbl_slider WHERE ativo =1;";
 
-  $select = mysqli_query($conn, $sql);
+  $select = mysqli_query($conn, $sliderSql);
 
   if($rs = mysqli_fetch_array($select)){
     $setaEsc = $rs['setaEsc'];
@@ -23,7 +23,7 @@ $conn = conexao();
 
 <!-- SLIDER -->
 <!-- Configurações do slider (efeitos, setas) -->
-<script type="text/javascript">
+<script>
     $(function(){
       $("#botao_img_slide ul").cycle ({
         fx:'fade',

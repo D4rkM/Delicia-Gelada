@@ -1,72 +1,71 @@
 <!DOCTYPE html>
 <?php
-//Declarando as variáveis em escopo
-$nome = null;
-$telefone = null;
-$celular = null;
-$email = null;
-$homepage = null;
-$facebook = null;
-$sexo = null;
-$profissao = null;
-$desc_sugestao = null;
-$desc_info = null;
+  //Declarando as variáveis em escopo
+  $nome = null;
+  $telefone = null;
+  $celular = null;
+  $email = null;
+  $homepage = null;
+  $facebook = null;
+  $sexo = null;
+  $profissao = null;
+  $desc_sugestao = null;
+  $desc_info = null;
 
-//Conexão com o banco de dados
+  //Conexão com o banco de dados
 
-//Estabelecendo conexao
+  //Estabelecendo conexao
 
   require_once("cms/include/conexao.php");
   $conn = conexao();
 
-//Checa conexao
+  //Checa conexao
   if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
   }
 
-//Ativando o Banco a ser utilizado
+  //Ativando o Banco a ser utilizado
 
-if(isset($_POST['btnEnviar'])){
-  // Pegando variaveis
-  $nome = $_POST['txtNome'];
-  $telefone = $_POST['txtTelefone'];
-  $celular = $_POST['txtCelular'];
-  $email = $_POST['txtEmail'];
-  $homepage = $_POST['txtHome'];
-  $facebook = $_POST['txtFacebook'];
-  $sexo = $_POST['rdoSexo'];
-  $profissao = $_POST['txtProfissao'];
-  $desc_sugestao = $_POST['txtSugestao'];
-  $desc_info = $_POST['txtInfo'];
+  if(isset($_POST['btnEnviar'])){
+    // Pegando variaveis
+    $nome = $_POST['txtNome'];
+    $telefone = $_POST['txtTelefone'];
+    $celular = $_POST['txtCelular'];
+    $email = $_POST['txtEmail'];
+    $homepage = $_POST['txtHome'];
+    $facebook = $_POST['txtFacebook'];
+    $sexo = $_POST['rdoSexo'];
+    $profissao = $_POST['txtProfissao'];
+    $desc_sugestao = $_POST['txtSugestao'];
+    $desc_info = $_POST['txtInfo'];
 
-//Construindo script de inserção de dados no banco
-  $sql = "insert into tbl_faleconosco(nome, telefone, celular, email, home_page, facebook, sexo, profissao, desc_sugestao, desc_informacao) values ('$nome','$telefone','$celular','$email','$homepage','$facebook', '$sexo','$profissao','$desc_sugestao','$desc_info');";
+  //Construindo script de inserção de dados no banco
+    $sql = "insert into tbl_faleconosco(nome, telefone, celular, email, home_page, facebook, sexo, profissao, desc_sugestao, desc_informacao) values ('$nome','$telefone','$celular','$email','$homepage','$facebook', '$sexo','$profissao','$desc_sugestao','$desc_info');";
 
-  //Evitando SqlInjection
-  addslashes($sql);
+    //Evitando SqlInjection
+    addslashes($sql);
 
-//Executando Script no BD
+  //Executando Script no BD
 
-  if(mysqli_query($conn, $sql)){
+    if(mysqli_query($conn, $sql)){
 
-    echo('<script tipe="text/javascript"> alert("Dados enviados com Sucesso, em breve nossos analistas lhe responderão!! Obrigado!"); </script>');
-    //fechando conexao com banco
-    mysqli_close($conn);
-    header('location:Contato.php');
-  } else{
-    echo ("<script>alert(Sinto muito tivemos um erro de conexão com nosso banco de dados... <br>" .$sql. "<br>" . mysqli_error($conn).');</script>');
+      echo('<script tipe="text/javascript"> alert("Dados enviados com Sucesso, em breve nossos analistas lhe responderão!! Obrigado!"); </script>');
+      //fechando conexao com banco
+      mysqli_close($conn);
+      header('location:Contato.php');
+    } else{
+      echo ("<script>alert(Sinto muito tivemos um erro de conexão com nosso banco de dados... <br>" .$sql. "<br>" . mysqli_error($conn).');</script>');
+    }
+    // echo($sql);
   }
-  // echo($sql);
-}
-
- ?>
+?>
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Delícia Gelada</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/master.css">
-    <link rel="stylesheet" href="css/contato.css">
     <script type="text/javascript"
     src="js/jquery.min.js">
     </script>
@@ -111,14 +110,14 @@ if(isset($_POST['btnEnviar'])){
 
     <?php include 'include/menu.php'; ?>
 
-    <div class="main">
+    <div class="mainFaleConosco">
       <!-- REDES SOCIAIS -->
-      <?php include "include/redesSociais.php" ?>
+      <?php //include "include/redesSociais.php"; ?>
 
     <!-- FORMULARIO FALE CONOSCO -->
     <!-- Iniciando Formulario de Contato -->
       <form class="frmFaleConosco" action="contato.php" method="post">
-        <div class="titulo">
+        <div class="tituloFaleConosco">
           <h2>Fale Conosco</h2>
           <div class="botaoEnviar">
             <input type="submit" name="btnEnviar" value="Enviar">
@@ -203,6 +202,9 @@ if(isset($_POST['btnEnviar'])){
           <h3>Informações de Produtos</h3>
           <div class="CaixasDeTexto">
             <textarea name="txtInfo" rows="10" cols="65" placeholder= "Ex: Quantas calorias tem o suco de laranja?"  maxlength="2800"></textarea>
+          </div>
+          <div class="btnEnviarMobile">
+            <input type="submit" name="btnEnviar" value="Enviar">
           </div>
         </div>
       </form>

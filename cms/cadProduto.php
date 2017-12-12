@@ -19,8 +19,8 @@
     $nome_arq = basename($_FILES['fotoImp']['name']);
     $foto = salvarImagem($nome_arq);
 
-    $sql = "INSERT INTO tbl_produto(nome, preco, descricao, codSubCategoria, ativo, foto)
-      VALUES ('$nome','$preco','$descricao','$subCategoria','$ativo','$foto');";
+    $sql = "INSERT INTO tbl_produto(nome, preco, descricao, codSubCategoria, ativo, foto,qtdCliques)
+      VALUES ('$nome','$preco','$descricao','$subCategoria','$ativo','$foto', 0);";
 
     if(mysqli_query($conn, $sql)){
       echo("<script>alert('Suco Cadastrado com Sucesso');</script>");

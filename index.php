@@ -1,7 +1,30 @@
 <!DOCTYPE html>
 <?php
-require_once("cms/include/conexao.php");
-$conn = conexao();
+  require_once("cms/include/conexao.php");
+  $conn = conexao();
+
+  $sql = "";
+
+  if(isset($_GET['subCat'])){
+    $subCod = $_GET['subCat'];
+    $sql = "SELECT * FROM tbl_produto WHERE codsubcategoria = '$subCod' AND ativo = 1";
+
+  }else if(isset($_GET['btn_pesquisar'])){
+
+    $pesquisa = $_GET['txt_pesquisa'];
+
+    $trySql = "SELECT * FROM tbl_produto WHERE nome LIKE '%$pesquisa%' AND ativo = 1;";
+    addslashes($trySql);
+    $try = mysqli_query($conn, $trySql);
+    if(mysqli_num_rows($try) <= 0){
+      $sql = "SELECT * FROM tbl_produto WHERE descricao LIKE '%$pesquisa%' AND ativo = 1;";
+    }else{
+      $sql = $trySql;
+    }
+
+  } else {
+    $sql = "SELECT * FROM tbl_produto WHERE ativo = 1 ORDER BY RAND();";
+  }
 
 ?>
 <html>
@@ -12,13 +35,40 @@ $conn = conexao();
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/master.css">
     <link rel="stylesheet" href="css/asdf.css">
-    <script src="js/jquery11.js" type="text/javascript"></script>
-    <script src="js/Jcycle.js" type="text/javascript"></script>
-    <script src="js/configSlider.js" type="text/javascript">
+    <script src="js/jquery11.js"></script>
+    <script src="js/Jcycle.js"></script>
+    <script src="js/configSlider.js">
+    </script>
+    <script>
+      $(document).ready(function() {
+
+        $(".ver").click(function() {
+          $(".modalContainer").slideToggle(2000);
+        //slideToggle
+        //toggle
+        //FadeIn
+        });
+      });
+
+        function Modal(idIten){
+          $.ajax({
+            type: "POST",
+            url: "modalProduto.php",
+            data: {id:idIten},
+            success: function(dados){
+              $('.modal').html(dados);
+            }
+          });
+        }
     </script>
   </head>
   <body>
-    <script type="text/javascript" src="menusuperior.js"></script>
+    <div class="modalContainer">
+      <div class="modal">
+      </div>
+    </div>
+
+    <script src="menusuperior.js"></script>
     <?php include "include/menu.php"; ?>
     <div class="main">
       <header>
@@ -36,8 +86,8 @@ $conn = conexao();
             <h2>Categorias</h2>
             <?php
             // Lógica para passar dados do banco para o site SIMULAÇÃO
-            $sql = "SELECT * FROM tbl_categoria WHERE ativo = 1;";
-            $select = mysqli_query($conn, $sql);
+            $Catsql = "SELECT * FROM tbl_categoria WHERE ativo = 1;";
+            $select = mysqli_query($conn, $Catsql);
               while($rs = mysqli_fetch_array($select)){
 
             ?>
@@ -46,14 +96,14 @@ $conn = conexao();
               <div class="subCategoria">
                 <ul class="">
                   <?php
-                    $sqlProd = "SELECT * FROM tbl_subCategoria WHERE ativo = 1 AND codCategoria =".$rs['codigo'];
+                    $sqlProd = "SELECT * FROM tbl_subcategoria WHERE ativo = 1 AND codCategoria =".$rs['codigo'];
 
                     $prodSelect = mysqli_query($conn, $sqlProd);
 
                     while ($prodRs = mysqli_fetch_array($prodSelect)) {
 
                   ?>
-                  <li><a href="#"><?php echo($prodRs['nome']); ?></a></li>
+                  <li><a href="index.php?subCat=<?php echo($prodRs['codigo']);?>"><?php echo($prodRs['nome']); ?></a></li>
                   <?php
                     }
                   ?>
@@ -70,14 +120,14 @@ $conn = conexao();
         <div id="conteudo">
           <?php
           //lógica para passar produtos para o site
-          $sql = "SELECT * FROM tbl_produto WHERE ativo = 1 ORDER BY RAND();";
-
-          $select = mysqli_query($conn,$sql);
+          $execute = $sql;
+          // echo($execute);
+          $select = mysqli_query($conn,$execute);
           if(mysqli_num_rows($select) > 0){
             // $lstProdutos = list($);
             // while($rs = mysqli_fetch_assoc($select)){
             //   $lstProdutos [] = $rs;
-            // }
+
 
             $i = 0;
             $a = 0;
@@ -101,7 +151,7 @@ $conn = conexao();
 
                <div class="produto">
                  <div class="img_produto">
-                  <a href="#"><img src="cms/<?php echo($rs['foto'])?>" alt="Produto"/></a>
+                   <img src="cms/<?php echo($rs['foto'])?>" alt="Produto"/>
                 </div>
                 <div class="info">
                   <ul>
@@ -111,7 +161,7 @@ $conn = conexao();
                   </ul>
                  </div>
                  <div class="detalhes">
-                   <a href="#">Detalhes</a>
+                   <a href="#" class="ver" onclick="Modal(<?php echo($rs["codigo"]);?>)">Detalhes</a>
                  </div>
                </div>
                <?php }
@@ -119,6 +169,8 @@ $conn = conexao();
              </div>
           <?php
             // }
+          }else {
+            ?> <h2>OPS!... Nenhum produto Encontrado</h2> <?php
           }
              ?>
         </div>

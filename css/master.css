@@ -42,6 +42,30 @@
     outline: 0;
   }
 
+  .modal{
+  	display: flex;
+  	/*padding-left: 20px;*/
+  	width:700px;
+  	min-height:500px;
+  	height: auto;
+  	overflow: hidden;
+  	background-color:#ffffff;
+  	margin:auto;
+  	/*margin-top:250px;*/
+  	border-radius: 50px;
+    z-index: 999;
+  }
+
+  .modalContainer{
+  	width:100%;
+  	height:100%;
+  	margin:0px;
+  	background: rgba(0, 0, 0, 0.7);
+  	position:fixed;
+  	display:none;
+    z-index: 998;
+  }
+
   /*MENU SUPERIOR*/
 
   #campo_vazio_menu_superior{
@@ -62,6 +86,9 @@
     transition: 2s;
   }
 
+  .mobMenuShow{
+    display: none;
+  }
   /*#menu_superior:hover {
     opacity:1;
     transition: 1s;
@@ -79,6 +106,10 @@
     margin-right: auto;
   }
 
+  #menuMobile{
+    display: none;
+  }
+
   #logo{
     display: flex;
     align-items: center;
@@ -92,15 +123,55 @@
     display: flex;
     align-items: center;
     /*background-color: purple;*/
-    width:680px;
+    width:700px;
     padding-left:20px;
     height: 100px;
     margin-top: 0px;
 
   }
+  .pesquisaDiv{
+    width: 260px;
+    display: flex;
+    flex-direction: row;
+  }
+  .barraPesquisa{
+    /*background-color: blue;*/
+    width: 260px;
+    padding-left: 10px;
+  }
+
+  .barraPesquisa input{
+    width: 260px;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom: solid 1px orange;
+    color: green;
+  }
+
+  .btn_pesquisar{
+    background-color: transparent;
+    background-image: url("../img/searche.png");
+    background-repeat: no-repeat;
+    border:groove;
+    width: 28px;
+    height: 28px;
+    border: 0px;
+  }
+
+  /*.btn_pesquisar >input:focus{
+    box-shadow:0;
+    border: 0 none;
+    outline: 0;
+  }*/
+
+  .iconPesquisar{
+    /*background-color: blue;*/
+    margin-left: 10px;
+  }
 
   #menu {
-  	width:600px;
+  	width:400px;
   	height:60px;
   }
 
@@ -112,6 +183,7 @@
   	width:100px;
   	height:22px;
   	text-align:center;
+    /*background-color: black;*/
   	/*Permite deixar o objeto alinhado
   		conforme suas caracteristicas originais
   		de alinhamento*/
@@ -167,7 +239,8 @@
   #autenticacao{
     display: flex;
     align-items: center;
-    padding-left:50px;
+    padding-left:30px;
+    /*background-color: grey;*/
     width: 490px;
     height: 100px;
   }
@@ -387,6 +460,7 @@
     /*border: solid 1px black;*/
     border-top: solid 1px orange;
     border-left: solid 1px orange;
+
     width: 300px;
     border-radius: 15px;
     margin-left: 15px;
@@ -678,10 +752,125 @@
     width: 800px;
     height: 400px;
   }
+
+  /* --FALE CONOSCO -- */
+  /*Conteudo Central*/
+  .mainFaleConosco{
+    display: flex;
+    margin:auto;
+    width: 1165px;
+    height: 590px;
+    flex-direction: column;
+    padding: 20px;
+    /*color: white;*/
+    /*background-color: blue;*/
+    border-bottom: solid 2px white;
+  }
+
+  .tituloFaleConosco{
+    display: flex;
+    flex-direction: row;
+    width: 1165px;
+    height: 30px;
+  }
+
+  .botaoEnviar input{
+    background-color: #7eaa14;
+    color: white;
+    border:none;
+    margin-left: 900px;
+    border-radius: 10px;
+    width: 80px;
+    height: 30px;
+  }
+
+  .btnEnviarMobile input{
+    display: none;
+    background-color: #7eaa14;
+    color: white;
+    /*text-align: center;*/
+    /*border:10px solid black;*/
+    border-radius: 10px;
+    width: 60px;
+    height: 30px;
+  }
+
+  .botaoEnviar input:hover{
+    background-color: Orange;
+  }
+
+  .comentario{
+    color: green;
+    float: left;
+    width: 1150px;
+    height: 50px;
+  }
+  /*Espaço Fale conosco(area do formulario)*/
+  .espacoFaleConosco{
+    display: flex;
+    flex-direction: column;
+    width: 570px;
+    height: 480px;
+    margin-right: 10px;
+    float: left;
+    /*background-color: blue;*/
+  }
+
+  .espacoFaleConosco h3{
+    margin:0px;
+    margin-bottom: 10px;
+  }
+
+  .faixa{
+    display: flex;
+    align-items: baseline;
+    width: 500px;
+    height: 55.5px;
+  }
+
+  .faixa input{
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom: solid 1px orange;
+    /*color: white;*/
+    /*background-color: #7eaa14;*/
+  }
+
+  .espacoFaleConosco input:focus{
+    border-bottom: solid 1px green;
+  }
+
+  .esquerda{
+    font-weight: bold;
+    /*background-color:#dfdfdf;*/
+    text-align: center;
+    width: 100px;
+    height: 54px;
+  }
+  .direita{
+    float: left;
+    height: 54px;
+  }
+
+  .CaixasDeTexto{
+    margin-bottom: 5px;
+  }
+
+
+  .espacoFaleConosco textarea:focus{
+    border: solid 0px green;
+  }
+
+  .espacoFaleConosco textarea{
+    border: solid 1px orange;
+    resize:none;
+  }
+
 }
 
 /**MOBILE*/
-@media screen and (min-width: 320px) and (max-width: 768px){
+@media screen and (min-width: 320px) and (max-width: 420px){
 
   /* Importando fonte */
   @font-face {
@@ -724,21 +913,163 @@
 
   .main{
     width: 100%;
-    background-color: blue;
+    /*background-color: blue;*/
+  }
+
+  /* --FALE CONOSCO -- */
+  /*Conteudo Central*/
+  .mainFaleConosco{
+    display: flex;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    /*background-color: blue;*/
+    /*padding: 20px;*/
+    /*color: white;*/
+    border-bottom: solid 2px white;
+  }
+
+
+  .tituloFaleConosco{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    /*margin-bottom: 20px;*/
+  }
+
+  .botaoEnviar input{
+    display: none;
+    background-color: #7eaa14;
+    color: white;
+    /*border:10px solid black;*/
+    border-radius: 10px;
+    width: 80px;
+    height: 30px;
+  }
+
+  .botaoEnviar input:hover{
+    background-color: Orange;
+  }
+
+  .btnEnviarMobile input{
+    display: flex;
+    background-color: #7eaa14;
+    color: white;
+    /*text-align: center;*/
+    /*border:10px solid black;*/
+    border-radius: 10px;
+    width: 60px;
+    height: 30px;
+  }
+
+  .btnEnviarMobile input:hover{
+    background-color: Orange;
+  }
+
+  .comentario{
+    text-align: center;
+    color: black;
+    /*float: left;*/
+    width: 100%;
+    height: 50px;
+  }
+  /*Espaço Fale conosco(area do formulario)*/
+  .espacoFaleConosco{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    align-items: center;
+    /*margin-right: 10px;*/
+    /*float: left;*/
+    /*background-color: blue;*/
+  }
+
+  .espacoFaleConosco h3{
+    margin:0px;
+    margin-bottom: 10px;
+  }
+
+  .faixa{
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*align-items: center;*/
+    /*text-align: center;*/
+    width: 100%;
+    height: 100px;
+
+  }
+
+  .faixa input{
+    display: flex;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom: solid 1px orange;
+    flex-direction: row;
+    /*width: 50%;*/
+    /*color: white;*/
+    /*background-color: #7eaa14;*/
+  }
+
+  .espacoFaleConosco input:focus{
+    border-bottom: solid 1px green;
+  }
+
+  .esquerda{
+    font-weight: bold;
+    /*background-color:#dfdfdf;*/
+    text-align: center;
+    width: 100%;
+    height: 20px;
+    /*margin-top: 50px;*/
+  }
+
+  .direita{
+    /*min-width: 300px;*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    margin-bottom: 10px;
+
+  }
+
+  .direita input{
+    width: 100%;
+  }
+
+  .CaixasDeTexto{
+    width: 100%;
+    margin-bottom: 5px;
+  }
+
+
+  .CaixasDeTexto textarea:focus{
+    border: solid 0px green;
+  }
+
+  .CaixasDeTexto textarea{
+    border: solid 1px orange;
+    resize:none;
+    width: 98%;
   }
 
 
   /*MENU SUPERIOR*/
 
   #campo_vazio_menu_superior{
-    background-color: pink;
-    width: 110%;
-    height: 100px;
+    /*background-color: pink;*/
+    width: 100%;
+    height: 80px;
   }
 
   #menu_superior{
-    width: 320px;
-    height: 100px;
+    width: 100%;
+    height: 80px;
     float: left;
     position: fixed;
     background-color: #8177c6;
@@ -759,619 +1090,717 @@
     flex-direction: row;
     align-items: center;
     width:100%;
-    height: 100px;
+    height: 80px;
     padding-left: 5px;
     padding-right: 5px;
     margin-left: auto;
     margin-right: auto;
-    background-color: grey;
+    /*background-color: grey;*/
   }
 
-  .menuMobile{
+  #menuMobile{
+    display: flex;
+    align-self: flex-start;
+    align-items: center;
+    padding-top: 5px;
+    padding-left: 5px;
+    width: 37%;
+    height: 75px;
+    /*background-color: blue;*/
+  }
+
+  #btnMenu{
+    width: 50px;
+    height: 50px;
+    float: left;
+  }
+
+  .mobMenuShow{
+    width:50px;
+    height:100px;
+    margin:0px;
+    float: left;
+    background-color: rgba(0, 0, 0, 0.7);
+    position:fixed;
+    /*opacity: 0;*/
+    display:flex;
+    opacity: 0;
+    overflow: hidden;
+    margin-left:200px;
+    z-index: 1200;
+    transition: 2s;
+  }
+
+  #btnMenu:hover>.mobMenuShow{
+    display: flex;
+    width:500px;
+    /*height: 80px;*/
+    z-index:999;
+    opacity:1;
+    overflow:visible;
+    transition:2s;
+  }
+
+  /*.menuMobile{
     width: 30px;
     height: auto;
-  }
-
-  #logo{
-    display: flex;
-    align-items: center;
-    background-image: url();
-    width: 150px;
-    height: 100px;
-    /*background-color: green;*/
-  }
-
-  #caixa_menu_superior{
-    display: none;
-    align-items: center;
-    background-color: purple;
-    width:680px;
-    padding-left:20px;
-    height: 100px;
-    margin-top: 0px;
-
-  }
-
-  #menu {
-  	width:100%;
-  	height:60px;
-    background-color: blue;
-  }
-
-  #menu li{
-  	list-style:none;
-  	/*Deixa a lista na Horizontal*/
-  	display:inline-block;
-  	padding-top:25px;
-  	width:100px;
-  	height:22px;
-  	text-align:center;
-  	/*Permite deixar o objeto alinhado
-  		conforme suas caracteristicas originais
-  		de alinhamento*/
-  	position:relative;
-  	/*Apenas desgruda o objeto da tela evitando que o objeto anterior desalinhe*/
-  	float:left;
-  }
-
-  .submenu{
-  	/*width:110px;
-  	height:60px;*/
-    /*background-color: #fff;*/
-    margin-left: 10px;
-  	/*Oculta o submenu
-  	display:none;*/
-  }
-
-  .submenu li{
-  	width:50px;
-  	height:70px;
-  	margin-left:10px;
-  	margin-top:5px;
-    /*background-color: green;*/
-  }
-
-  .divsubmenu{
-    display: none;
-    flex-direction: column;
-  	width:130px;
-    height:0px;
-  	overflow:hidden;
-  	opacity:0;
-  	margin-top:-0px;
-    background-color: #fff;
-  	transition:2s;
-    border-right: solid 1px orange;
-    border-bottom: solid 1px orange;
-  }
-
-  #menu li:hover> .divsubmenu {
-  	width:130px;
-  	height:115px;
-  	opacity:1;
-  	overflow:visible;
-  	transition:2s;
-    box-shadow: 11px 5px 5px /*rgb(102, 132, 29)*/rgba(0,0,0,0.5);
-    border-right: solid 1px orange;
-      border-bottom: solid 1px orange;
-  }
-
-  /*Autenticação*/
-
-  #autenticacao{
-    display: none;
-    align-items: center;
-    padding-left:50px;
-    width: 490px;
-    height: 100px;
-  }
-
-  .loginBtn{
-    float: left;
-    margin: 5px;
-  }
-
-  .loginBtn input{
-    background-color: orange;
-    border-top: 0px;
-    border-left: 0px;
-    border-right: 0px;
-    border-bottom: solid 1px orange;
-    border-radius: 5px;
-  }
-
-  .login{
-    float: left;
-    margin-left: 10px;
-  }
+  }*/
 
 
-  .login input{
-    border-top: 0px;
-    border-left: 0px;
-    border-right: 0px;
-    border-bottom: solid 1px orange;
-    color: green;
-  }
-
-  /*CABEÇALHO ( SLIDER )*/
-
-  header{
-    margin: auto;
-    overflow: hidden;
-    width: 1200px;
-    height: 350px;
-    position:relative;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-  }
-
-  .imagemSlide img{
-    display: flex;
-    width: 300px;
-  }
-  /* SLIDER */
-    #slide ul{
-      margin-top:0px;
-      list-style: none;
+    #logo{
+      display: flex;
+      align-self: flex-end;
+      /*background-image: url();*/
+      width: 80px;
+      height: 80px;
+      /*background-color: green;*/
     }
-    #slide{
+
+    #logo img{
+      width: 80px;
+      height: 80px;
+    }
+
+    #caixa_menu_superior{
       display: none;
-      width:1200px;
-      height:400px;
-      /*background-color:#35a6dd;*/
-      margin-left:auto;
-      margin-right:auto;
-      z-index: 1;
+      align-items: center;
+      background-color: purple;
+      width:680px;
+      padding-left:20px;
+      height: 100px;
+      margin-top: 0px;
+
     }
-    #botao_img_slide{
-      width:100%;
-      height:100%;
-      margin:0 auto;
+
+    #menu {
+    	width:100%;
+    	height:60px;
+      background-color: blue;
+    }
+
+    #menu li{
+    	list-style:none;
+    	/*Deixa a lista na Horizontal*/
+    	display:inline-block;
+    	padding-top:25px;
+    	width:100px;
+    	height:22px;
+    	text-align:center;
+    	/*Permite deixar o objeto alinhado
+    		conforme suas caracteristicas originais
+    		de alinhamento*/
+    	position:relative;
+    	/*Apenas desgruda o objeto da tela evitando que o objeto anterior desalinhe*/
+    	float:left;
+    }
+
+    .submenu{
+    	/*width:110px;
+    	height:60px;*/
+      /*background-color: #fff;*/
+      margin-left: 10px;
+    	/*Oculta o submenu
+    	display:none;*/
+    }
+
+    .submenu li{
+    	width:50px;
+    	height:70px;
+    	margin-left:10px;
+    	margin-top:5px;
+      /*background-color: green;*/
+    }
+
+    .divsubmenu{
+      display: none;
+      flex-direction: column;
+    	width:130px;
+      height:0px;
+    	overflow:hidden;
+    	opacity:0;
+    	margin-top:-0px;
+      background-color: #fff;
+    	transition:2s;
+      border-right: solid 1px orange;
+      border-bottom: solid 1px orange;
+    }
+
+    #menu li:hover> .divsubmenu {
+    	width:130px;
+    	height:115px;
+    	opacity:1;
+    	overflow:visible;
+    	transition:2s;
+      box-shadow: 11px 5px 5px /*rgb(102, 132, 29)*/rgba(0,0,0,0.5);
+      border-right: solid 1px orange;
+        border-bottom: solid 1px orange;
+    }
+
+    /*Autenticação*/
+
+    #autenticacao{
+      display: none;
+      align-items: center;
+      padding-left:50px;
+      width: 490px;
+      height: 100px;
+    }
+
+    .loginBtn{
+      float: left;
+      margin: 5px;
+    }
+
+    .loginBtn input{
+      background-color: orange;
+      border-top: 0px;
+      border-left: 0px;
+      border-right: 0px;
+      border-bottom: solid 1px orange;
+      border-radius: 5px;
+    }
+
+    .login{
+      float: left;
+      margin-left: 10px;
+    }
+
+
+    .login input{
+      border-top: 0px;
+      border-left: 0px;
+      border-right: 0px;
+      border-bottom: solid 1px orange;
+      color: green;
+    }
+
+    /*CABEÇALHO ( SLIDER )*/
+
+    header{
+      margin: auto;
       overflow: hidden;
-      float:left;
-    }
-    #slide a{
-      text-decoration:none;
-      color: #000000;
-    }
-    .imgSlider{
-      margin-top:0px;
-      width:1200px;
-      height:400px;
+      width: 100%;
+      height: 250px;
+      position:relative;
+      display: flex;
+      /*align-items: center;*/
+      flex-direction: row;
     }
 
-    #Ant{
-      width: 90px;
-      float:left;
-      margin-top:160px;
-      position:absolute;
-      z-index: 200;
-      padding: 0px;
+    .imagemSlide img{
+      /*display: flex;*/
+      min-height:auto;
+      height: 100%;
+      min-width: auto;
+      width: 100%;
+    }
+    /* SLIDER */
+      #slide ul{
+        margin-top:0px;
+        list-style: none;
+      }
+      #slide{
+        display: none;
+        width:1200px;
+        height:400px;
+        /*background-color:#35a6dd;*/
+        margin-left:auto;
+        margin-right:auto;
+        z-index: 1;
+      }
+      #botao_img_slide{
+        width:100%;
+        height:100%;
+        margin:0 auto;
+        overflow: hidden;
+        float:left;
+      }
+      #slide a{
+        text-decoration:none;
+        color: #000000;
+      }
+      .imgSlider{
+        margin-top:0px;
+        width:1200px;
+        height:400px;
+      }
+
+      #Ant{
+        width: 90px;
+        float:left;
+        margin-top:160px;
+        position:absolute;
+        z-index: 200;
+        padding: 0px;
+      }
+
+      #Ant img{
+        width: 90px;
+        height: 90px;
+      }
+
+      #Prox{
+        width: 90px;
+        height: 90px;
+        float:left;
+        margin-top:160px;
+        margin-left:1110px;
+        position:absolute;
+        z-index: 200;
+      }
+
+      #Prox img{
+        width: 90px;
+        height: 90px;
+      }
+
+    /* Home */
+
+    .conteudo{
+      display: flex;
+      flex-direction: row;
+      margin:auto;
+      width: 100%;
+      /*min-height:500px;*/
+      padding-bottom: 8px;
+      height: auto;
+      overflow: hidden;
+      /*background-color: #704154;*/
     }
 
-    #Ant img{
-      width: 90px;
-      height: 90px;
+    /* Menu Lateral */
+
+    #menu_lateral{
+      display: flex;
+      flex-direction: column;
+      /*background-color: #04602c;*/
+      /*border-top: solid 1px rgb(102, 132, 29);*/
+      border-right:solid 1px rgb(102, 132, 29);
+      border-left: solid 1px rgb(102, 132, 29);
+      border-bottom: solid 1px rgb(102, 132, 29);
+      border-radius: 0px 0px 30px 30px;
+      /*box-shadow: 5px 5px 5px /*rgb(102, 132, 29)rgba(0,0,0,0.5);*/
+      float: left;
+      /*overflow: hidden;*/
+      height: 330px;
+      max-height: auto;
+      /*height: auto;*/
+      /*height: auto;*/
+      width: 100px;
+      padding-left: 5px;
     }
 
-    #Prox{
-      width: 90px;
-      height: 90px;
-      float:left;
-      margin-top:160px;
-      margin-left:1110px;
-      position:absolute;
-      z-index: 200;
+    #menu_lateral h2{
+      font-size: 1em;
+      color: #597513;
     }
 
-    #Prox img{
-      width: 90px;
-      height: 90px;
+    #menu_lateral h3{
+      font-size: 1em;
+      color: #597513;
+      /*margin-left: 15px;*/
     }
 
-  /* Home */
+    #menu_lateral li{
+      font-size: 0.7em;
+      /*margin-left: 5px;*/
+      list-style: disc;
+      color: #7eaa14;
+    }
 
-  .conteudo{
-    display: none;
-    flex-direction: row;
-    margin:auto;
-    width: 1200px;
-    /*min-height: 1000px;*/
-    height: auto;
-    overflow: hidden;
-    /*background-color: #704154;*/
-  }
+    .categorias{
+      list-style-type: disc;
 
-  /* Menu Lateral */
+    }
 
-  #menu_lateral{
-    display: none;
-    flex-direction: column;
-    /*background-color: #04602c;*/
-    /*border-top: solid 1px rgb(102, 132, 29);*/
-    border-right:solid 1px rgb(102, 132, 29);
-    border-left: solid 1px rgb(102, 132, 29);
-    border-bottom: solid 1px rgb(102, 132, 29);
-    border-radius: 0px 0px 30px 30px;
-    box-shadow: 5px 5px 5px /*rgb(102, 132, 29)*/rgba(0,0,0,0.5);
-    float: left;
-    /*overflow: hidden;*/
-    height: 1000px;
-    /*height: auto;*/
-    width: 245px;
-    padding-left: 5px;
-  }
+    .categorias li{
+      margin-bottom: 5px;
+    }
 
-  #menu_lateral h2{
-    color: #597513;
-  }
-
-  #menu_lateral h3{
-    color: #597513;
-    margin-left: 15px;
-  }
-
-  #menu_lateral li{
-    margin-left: 55px;
-    list-style: disc;
-    color: #7eaa14;
-  }
-
-  .categorias{
-    list-style-type: disc;
-  }
-
-  .categorias li{
-    margin-bottom: 5px;
-  }
-
-  .subCategoria{
-  display: flex;
-  flex-direction: column;
-  width:200px;
-  height:0px;
-  overflow:hidden;
-  opacity:0;
-  margin-top:-0px;
-  background-color: #fff;
-  transition:2s;
-  border-bottom: solid 1px orange;
-  }
-
-  .categorias:hover>.subCategoria{
-    width:auto;
-    height: 120px;
-  	opacity:1;
-  	overflow:visible;
-  	transition:2s;
-
-  }
-  /* PRODUTOS ----------------------*/
-
-  #conteudo{
+    .subCategoria{
     display: flex;
     flex-direction: column;
-    /*background-color: #f2ffd3;*/
-    min-height: 1000px;
-    height: auto;
-    width: 1150px;
-    padding-left:1%;
-    padding-top: 20px;
-    overflow: hidden;
-  }
-
-  .faixa_produto{
-    /*display: flex;*/
-    /*flex-direction: row;*/
-    /*float: left;*/
-    margin-bottom: 5px;
-    width: 1000px;
-    height: 350px;
-    /*background-color: aquamarine;*/
-  }
-
-  .produto{
-    display: flex;
-    flex-direction: column;
-    /*background-color: #fff6d8;*/
-    box-shadow: 5px 5px 5px /*rgb(
-    102, 132, 29)*/rgba(0,0,0,0.5);
-    height: 340px;
-    /*border: solid 1px black;*/
-    border-top: solid 1px orange;
-    border-left: solid 1px orange;
-    width: 300px;
-    border-radius: 15px;
-    margin-left: 15px;
-    text-align: left;
-    float: left;
-  }
-
-  .produto ul li{
-    margin-top: 15px;
-    margin-left: 20px;
-    text-overflow:ellipsis;
-    white-space:nowrap;
+    width:100px;
+    height:0px;
     overflow:hidden;
-  }
+    opacity:0;
+    margin-top:-15px;
+    /*background-color: #fff;*/
+    transition:2s;
+    /*border-bottom: solid 1px orange;*/
+    }
 
-  .img_produto{
-    display: flex;
-    align-items: center;
-    margin:auto;
-    margin-left: 50px;
-  }
+    .categorias:hover>.subCategoria{
+      /*display: flex;*/
+      width:auto;
+      height: 80px;
+    	opacity:1;
+    	overflow:visible;
+    	transition:2s;
 
-  .img_produto img{
-    width: 200px;
-    height: 200px;
-    /*background-color: white;*/
-  }
+    }
+    /* PRODUTOS ----------------------*/
 
-  .detalhes{
-    width: 280px;
-    padding-right: 20px;
-    text-align: right;
-    /*background-color: #ffffff;*/
-  }
+    #conteudo{
+      display: flex;
+      flex-direction: row;
+      /*background-color: #f2ffd3;*/
+      /*min-height: 1000px;*/
+      height: auto;
+      width: 100%;
+      padding-left:2px;
+      padding-top: 1px;
+      overflow: hidden;
+    }
 
-  /*REDES SOCIAIS*/
+    #conteudo h2{
+      font-size: 0.9em;
+    }
 
-  #redes_sociais{
-    display: none;
-    flex-direction: column;
-    float: left;
-    width: 100px;
-    height: 300px;
-    /*background-color: #644170;*/
-    margin-left: 1205px;
-    position: fixed;
-  }
+    .faixa_produto{
+      display: flex;
+      flex-direction: column;
+      float: left;
+      padding-left:0px;
+      margin-bottom: 5px;
+      width: 100%;
+      height: auto;
+      /*background-color: aquamarine;*/
+    }
 
-  .redes{
-    display: none;
-    flex-direction: column;
-    width: 100px;
-    height: 120px;
-    opacity: 0.5;
-    transition: 2s;
-    /*background-color: blue;*/
-  }
+    .produto{
+      display: flex;
+      flex-direction: column;
+      /*background-color: #fff6d8;*/
+      /*box-shadow: 5px 5px 5px /*rgb(
+      102, 132, 29)rgba(0,0,0,0.5);*/
+      height: 250px;
+      /*border: solid 1px black;*/
+      border-top: solid 1px orange;
+      border-left: solid 1px orange;
+      border-right: solid 1px orange;
+      border-bottom: solid 1px orange;
+      width: 100%;
+      border-radius: 15px;
+      margin-bottom: 8px;
+      /*margin-left: 15px;*/
+      text-align: left;
 
-  .redes img{
-    width: 128px;
-    height: 120px;
-  }
+      float: left;
+    }
 
-  .redes:hover{
-    display: none;
-    flex-direction: column;
-    width: 100px;
-    height: 120px;
-    opacity: 1;
-    transition: 2s;
-  }
+    .produto ul li{
+      margin-top: 15px;
+      margin-left: 5px;
+      font-size: 0.9em;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+      overflow:hidden;
+    }
 
+    .info{
+      width:100%;
+      height: 100px;
+    }
 
-  /*--RODAPÉ--*/
+    .img_produto{
+      display: flex;
+      align-items: center;
+      /*margin:auto;*/
+      /*margin-left: 30%;*/
+      height: 150px;
+      /*align-self: center;*/
+    }
 
-  footer{
-    display: flex;
-    flex-direction: column;
-    /*background-image: url('../img/bgFooter.jpg');*/
-    /*background-size:100% 100%;*/
-    background-repeat: no-repeat;
-    margin-left: auto;
-    margin-right: auto;
-    color: #fff;
-    height: 250px;
-    width: 100%;
-    background-color: #7eaa14;
-    padding-top: 15px;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
+    .img_produto img{
+      width: 99.70%;
+      height: 100%;
+      border-top-right-radius: 15px;
+      border-top-left-radius: 15px;
+      /*background-color: white;*/
+    }
 
-  #foot{
-    margin:auto;
-    width: 1125px;
-    height: 100%;
-    /*background-color: blue;*/
-  }
+    .detalhes{
+      width:90%;
+      padding-right: 0px;
+      text-align: right;
+      font-size: 0.8em;
+      /*background-color: #ffffff;*/
+    }
 
-  .titulo{
-    width: 200px;
-  }
+    /*REDES SOCIAIS*/
 
-  .titulo h2{
-    margin: 0px;
-    border-bottom: solid 1px Orange;
-  }
+    #redes_sociais{
+      display: none;
+      flex-direction: column;
+      float: left;
+      width: 100px;
+      height: 300px;
+      /*background-color: #644170;*/
+      margin-left: 1205px;
+      position: fixed;
+    }
 
-  .rodape{
-    margin-top: 10px;
-    width: 1173px;
-    height: 200px;
-    padding-left: 15px;
-    text-align: left;
-    /*border: solid 1px black;*/
-  }
+    .redes{
+      display: none;
+      flex-direction: column;
+      width: 100px;
+      height: 120px;
+      opacity: 0.5;
+      transition: 2s;
+      /*background-color: blue;*/
+    }
 
-  .rodape h4{
-    margin:0px;
-    margin-top: 10px;
-  }
+    .redes img{
+      display: none;
+      width: 128px;
+      height: 120px;
+    }
 
-  .conteudoRodape{
-    width: 225px;
-    height: 200px;
-    /*border: solid 1px black;*/
-    float: left;
-  }
-
-  /*PROMOÇÃO CONTEUDO*/
-
-  .promoConteudo{
-    display: flex;
-
-    align-items: center;
-    flex-direction: column;
-    margin:auto;
-    width: 1200px;
-    height: auto;
-  }
+    .redes:hover{
+      display: none;
+      flex-direction: column;
+      width: 100px;
+      height: 120px;
+      opacity: 1;
+      transition: 2s;
+    }
 
 
-  /*CONTEUDO AMBIENTE*/
+    /*--RODAPÉ--*/
 
-  .ambConteudo{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin:auto;
-    width: 1200px;
-    height: auto;
-    /*background-color: blue;*/
-  }
+    footer{
+      display: flex;
+      flex-direction: column;
+      /*background-image: url('../img/bgFooter.jpg');*/
+      /*background-size:100% 100%;*/
+      background-repeat: no-repeat;
+      margin-left: auto;
+      margin-right: auto;
+      color: #fff;
+      height: 800px;
+      width: 100%;
+      background-color: #7eaa14;
+      padding-top: 15px;
+    }
 
-  .ambConteudo h1{text-align: center;color: #7eaa14;}
+    #foot{
+      margin:auto;
+      width: 100%;
+      height: 800px;
+      /*background-color: blue;*/
+    }
 
-  .ambConteudoFaixas{
-    display: flex;
-    flex-direction: column;
-    margin:auto;
-    width: 1200px;
-    height: 250px;
-    /*border: solid;*/
-    /*background-color: red;*/
-  }
+    .titulo{
+      /*display: flex;*/
+      /*align-items: center;*/
+      width: auto;
+      /*align-self: center;*/
+    }
 
-  .imagensLocal{
-    display: flex;
-    flex-direction: row;
-  }
+    .titulo h2{
+      text-align: center;
+      margin: 0px;
+      /*width: auto;*/
+      border-bottom: solid 1px Orange;
+    }
 
-  .amb_imagem iframe{
-    box-shadow: 2px 2px 2px 2px black;
-  }
+    .rodape{
+      display: flex;
+      flex-direction: column;
+      /*margin-top: 10px;*/
+      width: 100%;
+      height: 750px;
+      padding-left: 0px;
+      text-align: left;
+      /*border: solid 1px black;*/
+    }
 
-  .amb_imagem img{
-    margin-left: 350px;
-  }
+    .rodape h4{
+      margin:0px;
+      margin-top: 5px;
+    }
 
-  .amb_Descricao{
-    text-align: center;
-    width: 800px;
-    height: 250px;
-    padding: 15px;
-    /*background-color: green;*/
-  }
+    .conteudoRodape{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 200px;
+      text-align: center;
+      /*padding-bottom: 10px;*/
+      /*height:%;*/
+      /*border: solid 1px black;*/
+      /*float: left;*/
+    }
 
-  .amb_Descricao h2{
-    color: orange;
-  }
+    /*PROMOÇÃO CONTEUDO*/
 
-  .amb_Descricao p{
-    color: #7eaa14;
-  }
+    .promoConteudo{
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin:auto;
+      width: 1200px;
+      height: auto;
+    }
 
-  /* MODA DO VERAO */
 
-  #modaConteudo{
-    width: 1200px;
-    height: 950px;
-    /*padding-top: px;*/
-    /*color: #7eaa14;*/
-    /*border: solid 1px green;*/
-  }
+    /*CONTEUDO AMBIENTE*/
 
-  #modaConteudo h1, h3{
-     color: orange;
-  }
+    .ambConteudo{
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin:auto;
+      width: 100%;
+      height: auto;
+      /*background-color: blue;*/
+    }
 
-  .modaFaixa1{
-    display: flex;
-    align-items: baseline;
-    flex-direction: column;
-    /*background-color: blue;*/
-    width: 1198px;
-    height: 500px;
-  }
+    .ambConteudo h1{text-align: center;color: #7eaa14;}
 
-  .modaFaixa1 img{
-    width: 100%;
-    height: 100%;
-  }
+    .ambConteudoFaixas{
+      display: flex;
+      flex-direction: column;
+      margin:auto;
+      width: 1200px;
+      height: 250px;
+      /*border: solid;*/
+      /*background-color: red;*/
+    }
 
-  .modaFaixa2{
-    display: flex;
-    align-items: baseline;
-    flex-direction: row;
-    width: 1198px;
-    height: 500px;
-  }
+    .imagensLocal{
+      display: flex;
+      flex-direction: row;
+    }
 
-  .textoPrimario{
-    text-align: center;
-    width: 1200px;
-    height: 180px;
-  }
+    .amb_imagem iframe{
+      box-shadow: 2px 2px 2px 2px black;
+    }
 
-  .modaTextos{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /*background-color: blue;*/
-    width: 1200px;
-    padding-top:12px;
-    height: 500px;
-  }
+    .amb_imagem img{
+      margin-left: 350px;
+    }
 
-  .textos{
-    width: 400px;
-    height: 200px;
-    float: left;
-  }
+    .amb_Descricao{
+      text-align: center;
+      width: 800px;
+      height: 250px;
+      padding: 15px;
+      /*background-color: green;*/
+    }
 
-  .textoSecundario{
-    color: #7eaa14;
-    width: 400px;
-    height: 600px;
-  }
+    .amb_Descricao h2{
+      color: orange;
+    }
 
-  .textoSecundario h3{text-align: center;}
+    .amb_Descricao p{
+      color: #7eaa14;
+    }
 
-  #moda_img{
+    /* MODA DO VERAO */
 
-    width: 798px;
-    height: 400px;
-    float: left;
-    border-radius: 30px;
-    /*background-color: blue;*/
-  }
+    #modaConteudo{
+      width: 100%;
+      height: auto;
+      /*padding-top: px;*/
+      /*color: #7eaa14;*/
+      /*border: solid 1px green;*/
+    }
 
-  /* SUCO DO MES*/
+    #modaConteudo h1, h3{
+       color: orange;
+    }
 
-  .sucoMesPromo{
-    width: 1200px;
-    height: 600px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+    .modaFaixa1{
+      display: flex;
+      align-items: baseline;
+      flex-direction: column;
+      /*background-color: blue;*/
+      width: 100%;
+      height: 500px;
+    }
 
-  .imagemCentral{
-    width: 800px;
-    height: 400px;
-    /*background-color: blue;*/
-    margin: auto;
-    border-radius: 20px;
-  }
+    .modaFaixa1 img{
+      width: 100%;
+      height: 100%;
+    }
 
-  .imagemCentral img{
-    width: 800px;
-    height: 400px;
-  }
+    .modaFaixa2{
+      display: flex;
+      align-items: baseline;
+      flex-direction: column-reverse;
+      width: 100%;
+      height: auto;
+    }
 
+    .textoPrimario{
+      text-align: center;
+      width: 100%;
+      height: 180px;
+    }
+
+    .modaTextos{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      /*background-color: blue;*/
+      width: 98%;
+      padding-left: 2px;
+      padding-right: 2px;
+      text-align: justify;
+      /*padding-top:12px;*/
+      height: auto;
+    }
+
+    .textos{
+      width: 100%;
+      height: 200px;
+      /*float: left;*/
+      text-align: justify;
+    }
+
+    .textoSecundario{
+      color: #7eaa14;
+      width: 100%;
+      height: auto;
+    }
+
+    .textoSecundario h3{text-align: center;}
+
+    #moda_img{
+
+      width: 100%;
+      height: 30vh;
+      float: left;
+      border-radius: 30px;
+      /*background-color: blue;*/
+    }
+
+    #moda_img img{
+      width: 100%;
+      height: 100%;
+    }
+
+    /* SUCO DO MES*/
+
+    .sucoMesPromo{
+      width: 100%;
+      height: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .imagemCentral{
+      width: 100%;
+      height: 400px;
+      /*background-color: blue;*/
+      margin: auto;
+      border-radius: 20px;
+    }
+
+    .imagemCentral img{
+      width: 800px;
+      height: 400px;
+    }
 }

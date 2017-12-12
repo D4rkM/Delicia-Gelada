@@ -32,6 +32,18 @@
               Produtos
             </div>
           </a>
+          <?php
+            $nivel = $_SESSION['nivelUser'];
+            $linkEstatistica = '#';
+            if($nivel == 1){
+              $linkEstatistica = 'estatistica.php';
+            } ?>
+          <a href="<?php echo($linkEstatistica); ?>">
+            <div class="opcoes">
+              <img src="img/conteudo.png" alt="opção">
+              Estatísticas de Vendas
+            </div>
+          </a>
         </div>
 
       </div>
