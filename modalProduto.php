@@ -41,7 +41,7 @@ $(document).ready(function() {
                 // echo $insert;
 		?>
 		ID: <?php echo($id); ?>
-    <table width="400px" height="auto" border="solid" style="margin-left:50px">
+    <table>
       <tr>
         <td> <img src="cms/<?php echo($rs['foto']); ?>" alt="produto" width="300px" height="300px" style="margin-left:auto;"> </td>
       </tr>

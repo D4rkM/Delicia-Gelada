@@ -6,6 +6,7 @@
   $sql = "";
 
   if(isset($_GET['subCat'])){
+
     $subCod = $_GET['subCat'];
     $sql = "SELECT * FROM tbl_produto WHERE codsubcategoria = '$subCod' AND ativo = 1";
 
@@ -13,9 +14,11 @@
 
     $pesquisa = $_GET['txt_pesquisa'];
 
+
     $trySql = "SELECT * FROM tbl_produto WHERE nome LIKE '%$pesquisa%' AND ativo = 1;";
     addslashes($trySql);
     $try = mysqli_query($conn, $trySql);
+
     if(mysqli_num_rows($try) <= 0){
       $sql = "SELECT * FROM tbl_produto WHERE descricao LIKE '%$pesquisa%' AND ativo = 1;";
     }else{
@@ -48,6 +51,7 @@
         //toggle
         //FadeIn
         });
+
       });
 
         function Modal(idIten){
@@ -60,6 +64,11 @@
             }
           });
         }
+
+
+
+
+
     </script>
   </head>
   <body>
@@ -78,7 +87,7 @@
         </div>
       </header>
       <!-- CONTEUDO -->
-      <div class="conteudo">
+      <div class="conteudo" id="content">
         <?php include "include/redesSociais.php" ?>
         <!-- MENU LATERAL -->
         <div id="menu_lateral">

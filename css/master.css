@@ -41,7 +41,7 @@
     border: 0 none;
     outline: 0;
   }
-
+  /* MODAL CONFIGURAÇÃO */
   .modal{
   	display: flex;
   	/*padding-left: 20px;*/
@@ -54,6 +54,10 @@
   	/*margin-top:250px;*/
   	border-radius: 50px;
     z-index: 999;
+  }
+
+  .modal table{
+    margin-left: 50px;
   }
 
   .modalContainer{
@@ -86,8 +90,10 @@
     transition: 2s;
   }
 
-  .mobMenuShow{
+  #mobMenuShow{
     display: none;
+    opacity: 0;
+    overflow: hidden;
   }
   /*#menu_superior:hover {
     opacity:1;
@@ -113,10 +119,14 @@
   #logo{
     display: flex;
     align-items: center;
-    background-image: url();
+    /* background-image: url(); */
     width: 150px;
     height: 100px;
     /*background-color: green;*/
+  }
+  #logo img{
+    width: 100%;
+    height: 100%;
   }
 
   #caixa_menu_superior{
@@ -158,12 +168,6 @@
     height: 28px;
     border: 0px;
   }
-
-  /*.btn_pesquisar >input:focus{
-    box-shadow:0;
-    border: 0 none;
-    outline: 0;
-  }*/
 
   .iconPesquisar{
     /*background-color: blue;*/
@@ -916,148 +920,44 @@
     /*background-color: blue;*/
   }
 
-  /* --FALE CONOSCO -- */
-  /*Conteudo Central*/
-  .mainFaleConosco{
-    display: flex;
-    width: 100%;
-    height: auto;
-    flex-direction: column;
-    /*background-color: blue;*/
-    /*padding: 20px;*/
-    /*color: white;*/
-    border-bottom: solid 2px white;
-  }
-
-
-  .tituloFaleConosco{
-    display: flex;
-    flex-direction: column;
+  /* MODAL CONFIGURAÇÃO */
+  .modal{
+  	display: flex;
     align-items: center;
-    width: 100%;
-    height: 60px;
-    /*margin-bottom: 20px;*/
-  }
-
-  .botaoEnviar input{
-    display: none;
-    background-color: #7eaa14;
-    color: white;
-    /*border:10px solid black;*/
-    border-radius: 10px;
-    width: 80px;
-    height: 30px;
-  }
-
-  .botaoEnviar input:hover{
-    background-color: Orange;
-  }
-
-  .btnEnviarMobile input{
-    display: flex;
-    background-color: #7eaa14;
-    color: white;
-    /*text-align: center;*/
-    /*border:10px solid black;*/
-    border-radius: 10px;
-    width: 60px;
-    height: 30px;
-  }
-
-  .btnEnviarMobile input:hover{
-    background-color: Orange;
-  }
-
-  .comentario{
-    text-align: center;
-    color: black;
-    /*float: left;*/
-    width: 100%;
-    height: 50px;
-  }
-  /*Espaço Fale conosco(area do formulario)*/
-  .espacoFaleConosco{
-    display: flex;
     flex-direction: column;
-    width: 100%;
-    height: auto;
-    align-items: center;
-    /*margin-right: 10px;*/
-    /*float: left;*/
-    /*background-color: blue;*/
+  	/*padding-left: 20px;*/
+  	width:100%;
+  	min-height:auto;
+  	height: auto;
+  	overflow: hidden;
+  	background-color:#ffffff;
+  	/* margin:auto; */
+  	/*margin-top:250px;*/
+  	/* border-radius: 50px; */
+    z-index: 999;
   }
 
-  .espacoFaleConosco h3{
-    margin:0px;
-    margin-bottom: 10px;
-  }
-
-  .faixa{
-    /*display: flex;*/
-    /*flex-direction: column;*/
-    /*align-items: center;*/
-    /*text-align: center;*/
-    width: 100%;
-    height: 100px;
-
-  }
-
-  .faixa input{
+  .modal table{
     display: flex;
-    border-top: 0px;
-    border-left: 0px;
-    border-right: 0px;
-    border-bottom: solid 1px orange;
-    flex-direction: row;
-    /*width: 50%;*/
-    /*color: white;*/
-    /*background-color: #7eaa14;*/
+    margin-left:0px;
+    width:100%x;
+    height:auto;
+    align-self: center;
   }
 
-  .espacoFaleConosco input:focus{
-    border-bottom: solid 1px green;
-  }
-
-  .esquerda{
-    font-weight: bold;
-    /*background-color:#dfdfdf;*/
-    text-align: center;
-    width: 100%;
-    height: 20px;
-    /*margin-top: 50px;*/
-  }
-
-  .direita{
-    /*min-width: 300px;*/
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 60px;
-    margin-bottom: 10px;
-
-  }
-
-  .direita input{
+  .modal table img{
     width: 100%;
   }
 
-  .CaixasDeTexto{
-    width: 100%;
-    margin-bottom: 5px;
+  .modalContainer{
+  	width:100%;
+  	height:100%;
+  	margin:0px;
+  	background: rgba(0, 0, 0, 0.7);
+  	position:fixed;
+  	display:none;
+    z-index: 998;
   }
-
-
-  .CaixasDeTexto textarea:focus{
-    border: solid 0px green;
-  }
-
-  .CaixasDeTexto textarea{
-    border: solid 1px orange;
-    resize:none;
-    width: 98%;
-  }
-
 
   /*MENU SUPERIOR*/
 
@@ -1115,37 +1015,26 @@
     float: left;
   }
 
-  .mobMenuShow{
-    width:50px;
-    height:100px;
+  #mobMenuShow{
+    width:0px;
+    height:100%;
     margin:0px;
     float: left;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: /*rgba(0, 0, 0, 0.7)*/ orange;
     position:fixed;
+    margin-left:30%;
     /*opacity: 0;*/
-    display:flex;
-    opacity: 0;
-    overflow: hidden;
-    margin-left:200px;
-    z-index: 1200;
+    /* margin-top: 80px; */
+    display:none;
+    color: white;
+    z-index: 999;
     transition: 2s;
-  }
-
-  #btnMenu:hover>.mobMenuShow{
-    display: flex;
-    width:500px;
-    /*height: 80px;*/
-    z-index:999;
-    opacity:1;
-    overflow:visible;
-    transition:2s;
   }
 
   /*.menuMobile{
     width: 30px;
     height: auto;
   }*/
-
 
     #logo{
       display: flex;
@@ -1802,5 +1691,147 @@
     .imagemCentral img{
       width: 800px;
       height: 400px;
+    }
+
+    /* --FALE CONOSCO -- */
+    /*Conteudo Central*/
+    .mainFaleConosco{
+      display: flex;
+      width: 100%;
+      height: auto;
+      flex-direction: column;
+      /*background-color: blue;*/
+      /*padding: 20px;*/
+      /*color: white;*/
+      border-bottom: solid 2px white;
+    }
+
+
+    .tituloFaleConosco{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      height: 60px;
+      /*margin-bottom: 20px;*/
+    }
+
+    .botaoEnviar input{
+      display: none;
+      background-color: #7eaa14;
+      color: white;
+      /*border:10px solid black;*/
+      border-radius: 10px;
+      width: 80px;
+      height: 30px;
+    }
+
+    .botaoEnviar input:hover{
+      background-color: Orange;
+    }
+
+    .btnEnviarMobile input{
+      display: flex;
+      background-color: #7eaa14;
+      color: white;
+      /*text-align: center;*/
+      /*border:10px solid black;*/
+      border-radius: 10px;
+      width: 60px;
+      height: 30px;
+    }
+
+    .btnEnviarMobile input:hover{
+      background-color: Orange;
+    }
+
+    .comentario{
+      text-align: center;
+      color: black;
+      /*float: left;*/
+      width: 100%;
+      height: 50px;
+    }
+    /*Espaço Fale conosco(area do formulario)*/
+    .espacoFaleConosco{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: auto;
+      align-items: center;
+      /*margin-right: 10px;*/
+      /*float: left;*/
+      /*background-color: blue;*/
+    }
+
+    .espacoFaleConosco h3{
+      margin:0px;
+      margin-bottom: 10px;
+    }
+
+    .faixa{
+      /*display: flex;*/
+      /*flex-direction: column;*/
+      /*align-items: center;*/
+      /*text-align: center;*/
+      width: 100%;
+      height: 100px;
+
+    }
+
+    .faixa input{
+      display: flex;
+      border-top: 0px;
+      border-left: 0px;
+      border-right: 0px;
+      border-bottom: solid 1px orange;
+      flex-direction: row;
+      /*width: 50%;*/
+      /*color: white;*/
+      /*background-color: #7eaa14;*/
+    }
+
+    .espacoFaleConosco input:focus{
+      border-bottom: solid 1px green;
+    }
+
+    .esquerda{
+      font-weight: bold;
+      /*background-color:#dfdfdf;*/
+      text-align: center;
+      width: 100%;
+      height: 20px;
+      /*margin-top: 50px;*/
+    }
+
+    .direita{
+      /*min-width: 300px;*/
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      height: 60px;
+      margin-bottom: 10px;
+
+    }
+
+    .direita input{
+      width: 100%;
+    }
+
+    .CaixasDeTexto{
+      width: 100%;
+      margin-bottom: 5px;
+    }
+
+
+    .CaixasDeTexto textarea:focus{
+      border: solid 0px green;
+    }
+
+    .CaixasDeTexto textarea{
+      border: solid 1px orange;
+      resize:none;
+      width: 98%;
     }
 }

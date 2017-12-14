@@ -56,6 +56,18 @@
      $('#menu_superior').hover(function(){
        $("#menu_superior").css("opacity","1");
      })
+     // caso o botão de abrir menu seja pressionado o menu superior
+     //altera a opacidade para 1 e quando a tela for movida ele altera
+     // a opacidade para 2
+     $('#btnMenu').click(function(){
+      var top = $(window).scrollTop();
+      var opacity;
+
+      if(top > 150 ){
+        $("#menu_superior").css("opacity","1");
+      }
+
+     })
      // Efeito de retorno para quando retirar o mouse a opacidade diminuir novamente
      $('#menu_superior' && '#campo_items_menu' && '#logo' && '#autenticacao' && '.loginBtn' && '.login').mouseout(function(){
        var top = $(window).scrollTop();
@@ -65,35 +77,36 @@
        }
      });
   });
-</script>
-<script>
-  //Função para pesquisa no site
-  //eventos
-  $(document).ready(function(){
-    $.("#pesquisar").submit(function(){
 
-    });
-  });
+  //Função para abrir menu em Mobile
+  function abrirMenuMobile(){
+    if(document.getElementById("mobMenuShow").style.display=="none"){
+      document.getElementById("mobMenuShow").style.display = "flex";
+      document.getElementById("mobMenuShow").style.width = "70%";
 
-  function pesquisar(){
-    $.ajax({
-      type: "POST",
-      url:"index.php",
-      data: new FormData($('#form')[0])
-      success: function(dados){
-        $("index.php").html(dados);
-      }
-    });
+    }else{
+      document.getElementById("mobMenuShow").style.display = "none";
+    }
   }
+
+
 </script>
-<div class="mobMenuShow">
-  asdf
+<div id="mobMenuShow" >
+  <div class="conteudoRodape">
+    <h4><a href="index.php">Home</a></h4>
+    <h4><a href="BlogModa.php">Moda verão</a></h4>
+    <h4><a href="BlogSucoNatural.php">Importância</a></h4>
+    <h4><a href="promocoes.php">Promoções</a></h4>
+    <h4><a href="promoSucoDoMes.php">Suco do Mês</a></h4>
+    <h4><a href="ambientes.php">Ambientes</a></h4>
+    <h4><a href="Contato.php">Fale Conosco</a></h4>
+  </div>
 </div>
 <div id="campo_vazio_menu_superior">
   <div id="menu_superior">
     <div id="campo_items_menu">
       <div id="menuMobile">
-        <div id="btnMenu">
+        <div id="btnMenu" onclick="abrirMenuMobile();">
           <img src="img/menuMobile.png" alt="MenuMobile">
         </div>
          <!-- href="https://icons8.com.br/icon/3096/Cardápio">Créditos do ícone Cardápio -->
@@ -143,11 +156,6 @@
               <div class="iconPesquisar">
                 <br>
                 <input type="submit" name="btn_pesquisar" class="btn_pesquisar" value="">
-
-                <!-- <a href="index.php?modo=pesquisar&pesquisa=<?php// echo($_GET['txt_pesquisa']);?>" id="pesquisar" onclick="pesquisar()"> -->
-
-                  <!-- <img src="img/search.png" alt="Pesquisar" width="20px" height="20px"> -->
-                <!-- </a> -->
               </div>
             </div>
           </form>
